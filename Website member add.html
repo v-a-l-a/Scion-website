@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--code missing in StoreRaiderInfo to save the data as a new line in database-->
+  <!--after saving, hide the form-->
+<script>
+function StoreRaiderInfo(){
+  var raidersName, raidersMS, raidersOS, text;
+  raidersName = document.getElementById("AddedName").value;
+  if (document.getElementById("AddedRole1").checked) {
+    raidersMS = "melee DPS";
+    document.getElementById("OS1").checked=false;
+  } else if (document.getElementById("AddedRole2").checked) {
+      raidersMS = "ranged DPS";
+      document.getElementById("OS2").checked=false;
+    } else if (document.getElementById("AddedRole3").checked) {
+      raidersMS = "healer"
+      document.getElementById("OS3").checked=false;
+    } else {
+      raidersMS = "tank";
+      document.getElementById("OS4").unchecked=false;
+    }
+    offspecoptions = ["OS1", "OS2", "OS3", "OS4"];
+    offspecroles = ["melee DPS", "ranged DPS", "healer", "tank"];
+    raidersOS = "";
+    OScode = ""
+for (i = 0; i < 4; i++) {
+  if (document.getElementById(offspecoptions[i]).checked) {
+    raidersOS = raidersOS + offspecroles[i] + ";";
+    OScode = OScode + "1";
+  } else {
+      raidersOS = raidersOS;
+      OScode = OScode + "0";
+    }
+  }
+if (raidersOS.length==0) {
+  raidersOS = "none";
+  OScode = OScode + "1";
+} else {
+    raidersOS = raidersOS;
+    OScode = OScode + "0";
+  }
+  if (raidersName.length ==0) {
+    text = "Please fill the name";
+    } else {
+    text = "RaiderId: " + "??" +"<br>" + "Name: " + raidersName + "<br>" + "Role: " + raidersMS +
+    "<br>" + "Other roles: " + raidersOS + "<br>" + "With OS code of: " + OScode;
+  }
+document.getElementById("StoredInfoAsText").innerHTML = text;
+document.getElementById("AddRaiderBox").reset();
+}
+function StoreBossInfo(){
+var bossName = document.getElementById("AddedBossName").value;
+tankIDs = ["tanks1", "tanks2", "tanks3", "tanks4"];
+var tankN = [];
+for (i=0; i<4; i++){
+  if (document.getElementById(tankIDs[i]).checked){
+    tankAmount = i + 1
+    tankN.push(tankAmount);
+  }
+}
+if (tankN.length == 0) {
+  minTanks = 2;
+  maxTanks = 2;
+} else {
+  minTanks = tankN[0];
+  tanksTicked = tankN.length-1;
+  maxTanks = tankN[tanksTicked];
+}
+healerIDs = ["healers3", "healers4", "healers5", "healers6"];
+var healerN = [];
+for (i=0; i<4; i++){
+  if (document.getElementById(healerIDs[i]).checked){
+    healerAmount = i + 3;
+    healerN.push(healerAmount);
+  }
+}
+if (healerN.length==0){
+  minHealers = 4;
+  maxHealers = 4;
+} else {
+  minHealers = healerN[0];
+  healersTicked = healerN.length - 1;
+  maxHealers = healerN[healersTicked];
+}
+if (bossName.length==0){
+  text = "Please fill the fight name";
+} else {
+  text = "Name: " + bossName + "<br>" + "Tanks: " + "min. " + minTanks + " max: " + maxTanks
+  + "<br>" + "Healers: " + "min. " + minHealers + " max: " + maxHealers;
+}
+document.getElementById("BossInfoAsText").innerHTML=text;
+document.getElementById("AddFightBox").reset();
+}
+function hide(){
+  document.getElementById("AddRaiderBox").style.display="none";
+  document.getElementById("AddRaiderBox").reset();
+  document.getElementById("StoredInfoAsText").style.display="none";
+}
+function hideAddBoss(){
+  var FightBox = document.getElementById("AddFightBox");
+  FightBox.style.display="none";
+  FightBox.reset();
+  document.getElementById("BossInfoAsText").style.display="none";
+}
+function toggleRaiderBox(){
+  var RaiderBox = document.getElementById("AddRaiderBox");
+  if (RaiderBox.style.display === "none") {
+    RaiderBox.style.display = "block";
+  } else {
+    RaiderBox.style.display = "none";
+  }
+}
+function toggleBossBox(){
+  var BossBox = document.getElementById("AddFightBox");
+  if (BossBox.style.display === "none") {
+    BossBox.style.display = "block";
+  } else {
+    BossBox.style.display="none";
+  }
+}
+</script>
+</head>
+<body>
+  <button id ="AddRaider" type = "button"
+  onclick = "toggleRaiderBox()">
+  Add raider</button>
+  <form id = "AddRaiderBox" style = "display:none">
+    Name:<input id="AddedName" name="AddedName" type="text" required><br>
+    Role:<input id="AddedRole1" name="AddedRole" type="radio" value="melee DPS" checked>melee
+    <input id="AddedRole2" name="AddedRole" type="radio" value="ranged DPS">ranged
+    <input id="AddedRole3" name="AddedRole" type="radio" value="healer">healer
+    <input id="AddedRole4" name="AddedRole" type="radio" value="tank">tank<br>
+    Offspec(s):<input id="OS1" type="checkbox" value="melee DPS" name="OS1">melee
+    <input id="OS2" type="checkbox" value="ranged DPS" name="OS2">ranged
+    <input id="OS3" type="checkbox" value="healer" name="OS3">healer
+    <input id="OS4" type="checkbox" value="tank" name="OS4">tank
+    <br>
+  <button type="button" onclick ="StoreRaiderInfo()">Save</button>
+  <button id ="HideAddRaider" type="button"
+  onclick = "hide()">Cancel</button>
+  </form>
+  <!--<input type="submit"> defines a button for submitting form data to a form-handler.-->
+  <p id="StoredInfoAsText"></p>
+  <br><br><button id="AddFight" type="button"
+  onclick = "toggleBossBox()">
+  Add fight</button>
+  <form id = "AddFightBox" style = "display:none">
+    Name:<input id="AddedBossName" name="AddedBossName" type="text"><br>
+    tanks:<input id="tanks1" type="checkbox" value="1" name="tanks1">1
+    <input id="tanks2" type = "checkbox" value="2" name="tanks2">2
+    <input id="tanks3" type = "checkbox" value="3" name="tanks3">3
+    <input id="tanks4" type = "checkbox" value="4" name="tanks4">4
+    <br>healers:<input id="healers3" type = "checkbox" value="3" name="healers3">3
+    <input id="healers4" type = "checkbox" value="4" name="healers4">4
+    <input id="healers5" type = "checkbox" value="5" name="healers5">5
+    <input id="healers6" type = "checkbox" value="6" name="healers6">6
+    <br><button id="StoredBossInfo" type="button" onclick="StoreBossInfo()">Save</button>
+    <button id="hideAddedBoss" type="button" onclick="hideAddBoss()">Cancel</button>
+    <p id="BossInfoAsText"></p>
+  </form>
+</body>
+</html>

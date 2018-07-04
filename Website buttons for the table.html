@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.tbutton, .sitButton, .accDec, .RnameText {
+    height: 25px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.tbutton {
+  background-color: white;
+  border-left: 2px solid darkslategray;
+  border-top: 2px solid darkslategray;
+  border-bottom: 2px solid darkslategray;
+  border-right: 1px solid darkslategray;
+  text-align: center;
+  padding: 0 0 0 25px;
+  display: inline-block;
+  border-radius: 8px 0 0 8px;
+  width: 70px;
+}
+button:focus {outline:0;}
+.tbutton:hover {
+  opacity: 0.9;
+}
+.sitButton {
+  width: 25px;
+  border-radius: 0 8px 8px 0;
+  background-color: darkslategray;
+  border: 2px solid darkslategray;
+  position: absolute;
+  display: inline;
+  text-align: center;
+}
+.sitButton:hover {
+  opacity: 0.9;
+}
+.RnameText, .accDec {
+  background-color: white;
+  border: 2px solid white;
+  box-shadow: none;
+}
+.accDec {
+  text-align: center;
+  width: 10px;
+  margin-right: 3px;
+  font-size: 12px;
+}
+.RnameText {
+  text-align: left;
+  width: 90px;
+  display: inline-block;
+}
+</style>
+<script>
+function setDraftStatus(){
+  var vala = "00101"
+  var raiderStatus = document.getElementById("setDraftStatus");
+  raiderStatus.style.color = "black";
+  if (raiderStatus.innerText === "DPS") {
+    if ((vala.charAt(3)) === "1") {
+      raiderStatus.innerText = "tank";
+      raiderStatus.style.backgroundColor = "lightgray";
+    } else if ((vala.charAt(2)) === "1") {
+      raiderStatus.innerText = "healer";
+      raiderStatus.style.backgroundColor = "DarkSeaGreen";
+    } else {
+        raiderStatus.innerText = "-";
+        raiderStatus.style.backgroundColor = "white";
+  }} else if (raiderStatus.innerText === "tank") {
+        if ((vala.charAt(2)) === "1") {
+        raiderStatus.innerText = "healer";
+        raiderStatus.style.backgroundColor = "DarkSeaGreen";
+      } else {
+      raiderStatus.innerText = "-";
+      raiderStatus.style.backgroundColor = "white";
+  }} else if (raiderStatus.innerText === "-") {
+  raiderStatus.innerText = "x";
+  raiderStatus.style.backgroundColor = "lavender";
+} else if (raiderStatus.innerText === "x") {
+    if ((vala.charAt(0)) === "1" || (vala.charAt(1)) === "1") {
+    raiderStatus.innerText = "DPS";
+    raiderStatus.style.backgroundColor = "lightblue";
+  } else if ((vala.charAt(3)) === "1") {
+    raiderStatus.innerText = "tank";
+    raiderStatus.style.backgroundColor = "lightgray";
+  } else if ((vala.charAt(2)) === "1") {
+    raiderStatus.innerText = "healer";
+    raiderStatus.style.backgroundColor = "DarkSeaGreen";
+}} else {
+    raiderStatus.innerText = "-";
+    raiderStatus.style.backgroundColor = "white";
+}}
+function setAsStandby() {
+  var standbyTicked = document.getElementById("setDraftStatus");
+  standbyTicked.style.backgroundColor = "darkslategray";
+  standbyTicked.innerText = "standby";
+  standbyTicked.style.color = "white";
+}
+function setColour(varName, bcCol, textCol, borderCol) {
+  varName.style.backgroundColor = bcCol;
+  varName.style.border = borderCol;
+  varName.style.color = textCol;
+}
+function setAcc() {
+  var varName = document.getElementById("nameText");
+  if (varName.style.backgroundColor == "darkseagreen") {
+    var bcCol = "white";
+    var textCol = "black";
+    var borderCol = "white";
+    setColour(varName, bcCol, textCol, borderCol)
+  } else {
+    var bcCol = "DarkSeaGreen";
+    var textCol = "white";
+    var borderCol = "DarkSeaGreen";
+    setColour(varName, bcCol, textCol, borderCol)
+  }}
+function setDec(){
+  var varName = document.getElementById("nameText");
+  if (varName.style.backgroundColor == "darkslategray") {
+    var bcCol = "white";
+    var textCol = "black";
+    var borderCol = "white";
+    setColour(varName, bcCol, textCol, borderCol)
+  } else {
+    var bcCol = "darkslategray";
+    var textCol = "white";
+    var borderCol = "darkslategray";
+    setColour(varName, bcCol, textCol, borderCol)
+  }}
+</script>
+</head>
+<body>
+  <button class ="accDec" onclick="setAcc()" id="accepted"><i class="fa fa-check" style="color:DarkSeaGreen"></i></button>
+  <button class ="accDec" onclick="setDec()" id="declined"><i class="fa fa-close" style="color:darkslategray"></i></button>
+  <button id="nameText" class="RnameText">Name</button>
+  <button class="tbutton" onclick="setDraftStatus()" id="setDraftStatus">-</button>
+  <button class="sitButton" id="setStandby" onclick="setAsStandby()"></button>
+</body>
+</html>
