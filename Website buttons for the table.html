@@ -129,9 +129,51 @@ function setDec(){
     var borderCol = "darkslategray";
     setColour(varName, bcCol, textCol, borderCol)
   }}
+function addcelltexts(nofcolumns, cellTexts) {
+    for (i=0; i<nofcolumns; i++) {
+      var cell = row.insertCell(i);
+      cell.innerHTML = cellTexts[i];
+    }
+}
+function createfirstrow(bosses, nofcolumns, row, rown){
+  for (i=0; i<nofcolumns; i++) {
+    var cell = row.insertCell(i);
+      if (i===0){
+        cell.innerHTML = "";
+      } else
+    cell.innerHTML = bosses[i-1];
+  } i = rown
+}
+function otherrows(raiders, nofcolumns, row, rown){
+  for (i=0; i<nofcolumns; i++) {
+        var cell = row.insertCell(i);
+          if (i===0){
+            cell.innerHTML = raiders[rown-1];
+      } else {
+    cell.innerHTML = "-";
+}} i = rown
+}
+  function createTable(){
+    var table = document.getElementById("draftTable");
+    var raiders = ["Vala", "Haseo", "Ilnezhara"];
+    var bosses = ["Argus", "Aggramar", "Coven"];
+    var nofrows = raiders.length + 1;
+    var nofcolumns = bosses.length + 1;
+    for (i=0; i<nofrows; i++){
+      var rown = i
+      var row = table.insertRow(i);
+      if (i === 0) {
+        createfirstrow(bosses, nofcolumns, row, rown)
+      } else {
+        otherrows(raiders, nofcolumns, row, rown)
+      }
+    }}
 </script>
 </head>
 <body>
+<table id="draftTable">
+</table>
+<button id ="createT" onclick="createTable()"></button>
   <button class ="accDec" onclick="setAcc()" id="accepted"><i class="fa fa-check" style="color:DarkSeaGreen"></i></button>
   <button class ="accDec" onclick="setDec()" id="declined"><i class="fa fa-close" style="color:darkslategray"></i></button>
   <button id="nameText" class="RnameText">Name</button>
