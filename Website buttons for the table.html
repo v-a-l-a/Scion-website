@@ -67,12 +67,12 @@ function createCell(cell, rown, i) {
   cellid = "r" + [rown] + "c" + [i];
   setdraftid = "setDraftStatus" + cellid
   cell.innerHTML =
-"<button id="+setdraftid+" class='tbutton' onclick='setDraftStatus(cellid)'>" + cellid +
-"</button><button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(cellid)''></button>"
+"<button id="+setdraftid+" class='tbutton' onclick='setDraftStatus(this)'></button>" +
+"<button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(this)''></button>"
 }
 
-function setAsStandby(cellid) {
-  var standbyTicked = document.getElementById("setDraftStatus" + cellid);
+function setAsStandby(button) {
+  var standbyTicked = button.parentElement.getElementsByClassName("tbutton")[0];
   standbyTicked.style.backgroundColor = "darkslategray";
   standbyTicked.innerText = "standby";
   standbyTicked.style.color = "white";
