@@ -54,46 +54,25 @@ button:focus {outline:0;}
 }
 </style>
 <script>
-function setDraftStatus(){
-  var vala = "00101"
-  var raiderStatus = document.getElementById("setDraftStatus");
-  raiderStatus.style.color = "black";
-  if (raiderStatus.innerText === "DPS") {
-    if ((vala.charAt(3)) === "1") {
-      raiderStatus.innerText = "tank";
-      raiderStatus.style.backgroundColor = "lightgray";
-    } else if ((vala.charAt(2)) === "1") {
-      raiderStatus.innerText = "healer";
-      raiderStatus.style.backgroundColor = "DarkSeaGreen";
-    } else {
-        raiderStatus.innerText = "-";
-        raiderStatus.style.backgroundColor = "white";
-  }} else if (raiderStatus.innerText === "tank") {
-        if ((vala.charAt(2)) === "1") {
-        raiderStatus.innerText = "healer";
-        raiderStatus.style.backgroundColor = "DarkSeaGreen";
+function otherrows(raiders, nofcolumns, row, rown){
+  for (i=0; i<nofcolumns; i++) {
+        var cell = row.insertCell(i);
+          if (i===0){
+            cell.innerHTML = raiders[rown-1];
       } else {
-      raiderStatus.innerText = "-";
-      raiderStatus.style.backgroundColor = "white";
-  }} else if (raiderStatus.innerText === "-") {
-  raiderStatus.innerText = "x";
-  raiderStatus.style.backgroundColor = "lavender";
-} else if (raiderStatus.innerText === "x") {
-    if ((vala.charAt(0)) === "1" || (vala.charAt(1)) === "1") {
-    raiderStatus.innerText = "DPS";
-    raiderStatus.style.backgroundColor = "lightblue";
-  } else if ((vala.charAt(3)) === "1") {
-    raiderStatus.innerText = "tank";
-    raiderStatus.style.backgroundColor = "lightgray";
-  } else if ((vala.charAt(2)) === "1") {
-    raiderStatus.innerText = "healer";
-    raiderStatus.style.backgroundColor = "DarkSeaGreen";
-}} else {
-    raiderStatus.innerText = "-";
-    raiderStatus.style.backgroundColor = "white";
-}}
-function setAsStandby() {
-  var standbyTicked = document.getElementById("setDraftStatus");
+          createCell(cell, rown, i)
+        }} i = rown
+}
+function createCell(cell, rown, i) {
+  cellid = "r" + [rown] + "c" + [i];
+  setdraftid = "setDraftStatus" + cellid
+  cell.innerHTML =
+"<button id=setdraftid class='tbutton' onclick='setDraftStatus(cellid)'>" + cellid +
+"</button><button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(cellid)''></button>"
+}
+
+function setAsStandby(cellid) {
+  var standbyTicked = document.getElementById("setDraftStatus" + cellid);
   standbyTicked.style.backgroundColor = "darkslategray";
   standbyTicked.innerText = "standby";
   standbyTicked.style.color = "white";
@@ -103,8 +82,8 @@ function setColour(varName, bcCol, textCol, borderCol) {
   varName.style.border = borderCol;
   varName.style.color = textCol;
 }
-function setAcc() {
-  var varName = document.getElementById("nameText");
+function setAcc(cellid) {
+  var varName = document.getElementById("nameText" + cellid);
   if (varName.style.backgroundColor == "darkseagreen") {
     var bcCol = "white";
     var textCol = "black";
@@ -116,8 +95,8 @@ function setAcc() {
     var borderCol = "DarkSeaGreen";
     setColour(varName, bcCol, textCol, borderCol)
   }}
-function setDec(){
-  var varName = document.getElementById("nameText");
+function setDec(cellid){
+  var varName = document.getElementById("nameText" + cellid);
   if (varName.style.backgroundColor == "darkslategray") {
     var bcCol = "white";
     var textCol = "black";
@@ -129,12 +108,7 @@ function setDec(){
     var borderCol = "darkslategray";
     setColour(varName, bcCol, textCol, borderCol)
   }}
-function addcelltexts(nofcolumns, cellTexts) {
-    for (i=0; i<nofcolumns; i++) {
-      var cell = row.insertCell(i);
-      cell.innerHTML = cellTexts[i];
-    }
-}
+
 function createfirstrow(bosses, nofcolumns, row, rown){
   for (i=0; i<nofcolumns; i++) {
     var cell = row.insertCell(i);
@@ -143,15 +117,6 @@ function createfirstrow(bosses, nofcolumns, row, rown){
       } else
     cell.innerHTML = bosses[i-1];
   } i = rown
-}
-function otherrows(raiders, nofcolumns, row, rown){
-  for (i=0; i<nofcolumns; i++) {
-        var cell = row.insertCell(i);
-          if (i===0){
-            cell.innerHTML = raiders[rown-1];
-      } else {
-    cell.innerHTML = "-";
-}} i = rown
 }
   function createTable(){
     var table = document.getElementById("draftTable");
@@ -168,6 +133,45 @@ function otherrows(raiders, nofcolumns, row, rown){
         otherrows(raiders, nofcolumns, row, rown)
       }
     }}
+    function setDraftStatus(cellid){
+      var vala = "00101";
+      var draftcellid = 'setDraftStatus' + cellid;
+      var raiderStatus = document.getElementById(draftcellid);
+      raiderStatus.style.color = "black";
+      if (raiderStatus.innerText === "DPS") {
+        if ((vala.charAt(3)) === "1") {
+          raiderStatus.innerText = "tank";
+          raiderStatus.style.backgroundColor = "lightgray";
+        } else if ((vala.charAt(2)) === "1") {
+          raiderStatus.innerText = "healer";
+          raiderStatus.style.backgroundColor = "DarkSeaGreen";
+        } else {
+            raiderStatus.innerText = "-";
+            raiderStatus.style.backgroundColor = "white";
+      }} else if (raiderStatus.innerText === "tank") {
+            if ((vala.charAt(2)) === "1") {
+            raiderStatus.innerText = "healer";
+            raiderStatus.style.backgroundColor = "DarkSeaGreen";
+          } else {
+          raiderStatus.innerText = "-";
+          raiderStatus.style.backgroundColor = "white";
+      }} else if (raiderStatus.innerText === "-") {
+      raiderStatus.innerText = "x";
+      raiderStatus.style.backgroundColor = "lavender";
+    } else if (raiderStatus.innerText === "x") {
+        if ((vala.charAt(0)) === "1" || (vala.charAt(1)) === "1") {
+        raiderStatus.innerText = "DPS";
+        raiderStatus.style.backgroundColor = "lightblue";
+      } else if ((vala.charAt(3)) === "1") {
+        raiderStatus.innerText = "tank";
+        raiderStatus.style.backgroundColor = "lightgray";
+      } else if ((vala.charAt(2)) === "1") {
+        raiderStatus.innerText = "healer";
+        raiderStatus.style.backgroundColor = "DarkSeaGreen";
+    }} else {
+        raiderStatus.innerText = "-";
+        raiderStatus.style.backgroundColor = "white";
+    }}
 </script>
 </head>
 <body>
@@ -179,5 +183,7 @@ function otherrows(raiders, nofcolumns, row, rown){
   <button id="nameText" class="RnameText">Name</button>
   <button class="tbutton" onclick="setDraftStatus()" id="setDraftStatus">-</button>
   <button class="sitButton" id="setStandby" onclick="setAsStandby()"></button>
+<!--"<button class ='accDec' onclick='setAcc(cellid)' id=('accepted' + cellid)><i class='fa fa-check' style='color:DarkSeaGreen'></i></button><button class ='accDec' onclick='setDec(cellid)' id=('declined' + cellid)><i class='fa fa-close' style='color:darkslategray'></i></button><button id=('nameText'+cellid) class='RnameText'>Name</button>"
+-->
 </body>
 </html>
