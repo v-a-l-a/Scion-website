@@ -67,7 +67,7 @@ function createCell(cell, rown, i) {
   cellid = "r" + [rown] + "c" + [i];
   setdraftid = "setDraftStatus" + cellid
   cell.innerHTML =
-"<button id=setdraftid class='tbutton' onclick='setDraftStatus(cellid)'>" + cellid +
+"<button id="+setdraftid+" class='tbutton' onclick='setDraftStatus(cellid)'>" + cellid +
 "</button><button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(cellid)''></button>"
 }
 
@@ -133,10 +133,9 @@ function createfirstrow(bosses, nofcolumns, row, rown){
         otherrows(raiders, nofcolumns, row, rown)
       }
     }}
-    function setDraftStatus(cellid){
+    function setDraftStatus(button){
       var vala = "00101";
-      var draftcellid = 'setDraftStatus' + cellid;
-      var raiderStatus = document.getElementById(draftcellid);
+      var raiderStatus = button
       raiderStatus.style.color = "black";
       if (raiderStatus.innerText === "DPS") {
         if ((vala.charAt(3)) === "1") {
@@ -181,7 +180,7 @@ function createfirstrow(bosses, nofcolumns, row, rown){
   <button class ="accDec" onclick="setAcc()" id="accepted"><i class="fa fa-check" style="color:DarkSeaGreen"></i></button>
   <button class ="accDec" onclick="setDec()" id="declined"><i class="fa fa-close" style="color:darkslategray"></i></button>
   <button id="nameText" class="RnameText">Name</button>
-  <button class="tbutton" onclick="setDraftStatus()" id="setDraftStatus">-</button>
+  <button class="tbutton" onclick="setDraftStatus(this)">-</button>
   <button class="sitButton" id="setStandby" onclick="setAsStandby()"></button>
 <!--"<button class ='accDec' onclick='setAcc(cellid)' id=('accepted' + cellid)><i class='fa fa-check' style='color:DarkSeaGreen'></i></button><button class ='accDec' onclick='setDec(cellid)' id=('declined' + cellid)><i class='fa fa-close' style='color:darkslategray'></i></button><button id=('nameText'+cellid) class='RnameText'>Name</button>"
 -->
