@@ -56,13 +56,30 @@ button:focus {outline:0;}
   display: inline-block;
 }
 .decl {}
+.acces {}
 </style>
 <script>
+function Raider(id, name, role, offrole){
+  this.idN = id;
+  this.nameN = name;
+  this.roleN = role;
+  this.offroleN = offrole;
+}
+line0 = ["Vala", "healer", "01001"];
+line1 = ["Haseo", "DPSr", "00001"];
+line2 = ["Bossly", "tank", "10000"];
+line3 = ["Ilne", "DPSm", "00010"];
+for (i=0; i<4; i++) {
+  raider = "raider" + i;
+  var raider = new Raider("ID?", line0[0], line0[1], line0[2]);}
+
 function otherrows(raiders, nofcolumns, row, rown){
   for (i=0; i<nofcolumns; i++) {
         var cell = row.insertCell(i);
           if (i===0){
             createCell1(cell, row, i, raiders, rown)
+      } else if (i===1) {
+        cell.innerHTML = raider.roleN;
       } else {
           createCell(cell, rown, i)
         }} i = rown
@@ -102,11 +119,13 @@ function setAcc(button) {
     var bcCol = "white";
     var textCol = "black";
     var borderCol = "white";
+        button.parentElement.class = "acces";
     setColour(varName, bcCol, textCol, borderCol)
   } else {
     var bcCol = "DarkSeaGreen";
     var textCol = "white";
     var borderCol = "DarkSeaGreen";
+        button.parentElement.class = "acces";
     setColour(varName, bcCol, textCol, borderCol)
   }}
 function setDec(button){
@@ -115,6 +134,7 @@ function setDec(button){
     var bcCol = "white";
     var textCol = "black";
     var borderCol = "white";
+    button.parentElement.class = "acces";
     setColour(varName, bcCol, textCol, borderCol)
   } else {
     var bcCol = "darkslategray";
@@ -129,6 +149,8 @@ function createfirstrow(bosses, nofcolumns, row, rown){
     var cell = row.insertCell(i);
       if (i===0){
         cell.innerHTML = "";
+      } else if (i===1){
+        cell.innerHTML = "R";
       } else
     cell.innerHTML = bosses[i-1];
     cell.style.textAlign="center";
@@ -140,7 +162,7 @@ function createfirstrow(bosses, nofcolumns, row, rown){
     var raiders = ["Vala", "Haseo", "Ilnezhara"];
     var bosses = ["Argus", "Aggramar", "Coven"];
     var nofrows = raiders.length + 1;
-    var nofcolumns = bosses.length + 1;
+    var nofcolumns = bosses.length + 2;
     for (i=0; i<nofrows; i++){
       var rown = i
       var row = table.insertRow(i);
@@ -215,7 +237,6 @@ function hideDeclined(){
   }
   document.getElementById("HiDe").innerText = "Show Declined";
 }
-
 </script>
 </head>
 <body onload = "createTable()">
