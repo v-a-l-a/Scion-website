@@ -3,6 +3,9 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+td {
+  width: 100px;
+}
 .tbutton, .sitButton, .accDec, .RnameText {
     height: 25px;
     cursor: pointer;
@@ -52,23 +55,34 @@ button:focus {outline:0;}
   width: 90px;
   display: inline-block;
 }
+.decl {}
 </style>
 <script>
 function otherrows(raiders, nofcolumns, row, rown){
   for (i=0; i<nofcolumns; i++) {
         var cell = row.insertCell(i);
           if (i===0){
-            cell.innerHTML = raiders[rown-1];
+            createCell1(cell, row, i, raiders, rown)
       } else {
           createCell(cell, rown, i)
         }} i = rown
 }
+function createCell1(cell, row, i, raiders, rown){
+  RowId = row;
+  cell.innerHTML =
+  "<button class ='accDec' onclick='setAcc(this)' id=('accepted' + RowId)><i class='fa fa-check' style='color:DarkSeaGreen'></i></button>"+
+  "<button class ='accDec' onclick='setDec(this)' id=('declined' + RowId)><i class='fa fa-close' style='color:darkslategray'></i></button>"+
+  "<button id=('nameText' + RowId) class='RnameText'>"+raiders[rown-1]+"</button>";
+  cell.style.width="130px";
+}
+
 function createCell(cell, rown, i) {
   cellid = "r" + [rown] + "c" + [i];
   setdraftid = "setDraftStatus" + cellid
   cell.innerHTML =
 "<button id="+setdraftid+" class='tbutton' onclick='setDraftStatus(this)'></button>" +
-"<button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(this)''></button>"
+"<button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(this)''></button>";
+  document.getElementById(setdraftid).innerText = "-";
 }
 
 function setAsStandby(button) {
@@ -82,8 +96,8 @@ function setColour(varName, bcCol, textCol, borderCol) {
   varName.style.border = borderCol;
   varName.style.color = textCol;
 }
-function setAcc(cellid) {
-  var varName = document.getElementById("nameText" + cellid);
+function setAcc(button) {
+  var varName = button.parentElement.getElementsByClassName("RnameText")[0];
   if (varName.style.backgroundColor == "darkseagreen") {
     var bcCol = "white";
     var textCol = "black";
@@ -95,8 +109,8 @@ function setAcc(cellid) {
     var borderCol = "DarkSeaGreen";
     setColour(varName, bcCol, textCol, borderCol)
   }}
-function setDec(cellid){
-  var varName = document.getElementById("nameText" + cellid);
+function setDec(button){
+  var varName = button.parentElement.getElementsByClassName("RnameText")[0];
   if (varName.style.backgroundColor == "darkslategray") {
     var bcCol = "white";
     var textCol = "black";
@@ -106,6 +120,7 @@ function setDec(cellid){
     var bcCol = "darkslategray";
     var textCol = "white";
     var borderCol = "darkslategray";
+    button.parentElement.class = "decl";
     setColour(varName, bcCol, textCol, borderCol)
   }}
 
@@ -116,6 +131,8 @@ function createfirstrow(bosses, nofcolumns, row, rown){
         cell.innerHTML = "";
       } else
     cell.innerHTML = bosses[i-1];
+    cell.style.textAlign="center";
+    cell.style.height="50px";
   } i = rown
 }
   function createTable(){
@@ -171,18 +188,46 @@ function createfirstrow(bosses, nofcolumns, row, rown){
         raiderStatus.innerText = "-";
         raiderStatus.style.backgroundColor = "white";
     }}
+function hideShowDeclined(){
+  var dectext = document.getElementById("HiDe").innerText;
+  if (dectext === "Hide Declined") {
+    hideDeclined()
+  } else {showDeclined()}
+}
+
+function showDeclined(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  for (i=1; i<nofr; i++){
+      table.rows[i].style.display = "";
+    }
+  document.getElementById("HiDe").innerText = "Hide Declined";
+}
+
+function hideDeclined(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  for (i=1; i<nofr; i++){
+    var cellstatus = table.rows[i].cells[0];
+    if (cellstatus.class === "decl") {
+      table.rows[i].style.display = "none";
+    }
+  }
+  document.getElementById("HiDe").innerText = "Show Declined";
+}
+
 </script>
 </head>
-<body>
+<body onload = "createTable()">
 <table id="draftTable">
 </table>
-<button id ="createT" onclick="createTable()"></button>
+<br><br>
+<button id="HiDe" onclick="hideShowDeclined()">Hide Declined</button>
+<p style="display:none">
   <button class ="accDec" onclick="setAcc()" id="accepted"><i class="fa fa-check" style="color:DarkSeaGreen"></i></button>
   <button class ="accDec" onclick="setDec()" id="declined"><i class="fa fa-close" style="color:darkslategray"></i></button>
   <button id="nameText" class="RnameText">Name</button>
   <button class="tbutton" onclick="setDraftStatus(this)">-</button>
-  <button class="sitButton" id="setStandby" onclick="setAsStandby()"></button>
-<!--"<button class ='accDec' onclick='setAcc(cellid)' id=('accepted' + cellid)><i class='fa fa-check' style='color:DarkSeaGreen'></i></button><button class ='accDec' onclick='setDec(cellid)' id=('declined' + cellid)><i class='fa fa-close' style='color:darkslategray'></i></button><button id=('nameText'+cellid) class='RnameText'>Name</button>"
--->
+  <button class="sitButton" id="setStandby" onclick="setAsStandby()"></button></p>
 </body>
 </html>
