@@ -65,13 +65,25 @@ function Raider(id, name, role, offrole){
   this.roleN = role;
   this.offroleN = offrole;
 }
-line0 = ["Vala", "healer", "01001"];
-line1 = ["Haseo", "DPSr", "00001"];
+lines = ["Vala", "healer", "01000"];
+line1 = ["Haseo", "DPSr", "00000"];
 line2 = ["Bossly", "tank", "10000"];
 line3 = ["Ilne", "DPSm", "00010"];
+raiderObjects = [];
 for (i=0; i<4; i++) {
-  raider = "raider" + i;
-  var raider = new Raider("ID?", line0[0], line0[1], line0[2]);}
+  var raider = "raider" + i;
+  if (i === 0){
+    lines = ["Vala", "healer", "00010"];
+  } else if (i === 1){
+    lines = ["Haseo", "DPSr", "00001"];
+  } else if (i === 2){
+    lines = ["Bossly", "tank", "10001"];
+  }  else {
+    lines = ["Ilne", "DPSm", "00101"];
+  }
+  var raider = new Raider("ID?", lines[0], lines[1], lines[2]);
+  raiderObjects.push(raider);
+}
 
 function otherrows(raiders, nofcolumns, row, rown){
   for (i=0; i<nofcolumns; i++) {
@@ -79,7 +91,7 @@ function otherrows(raiders, nofcolumns, row, rown){
           if (i===0){
             createCell1(cell, row, i, raiders, rown)
       } else if (i===1) {
-        cell.innerHTML = raider.roleN;
+        cell.innerHTML = raiderObjects[rown-1].roleN;
       } else {
           createCell(cell, rown, i)
         }} i = rown
@@ -89,7 +101,7 @@ function createCell1(cell, row, i, raiders, rown){
   cell.innerHTML =
   "<button class ='accDec' onclick='setAcc(this)' id=('accepted' + RowId)><i class='fa fa-check' style='color:DarkSeaGreen'></i></button>"+
   "<button class ='accDec' onclick='setDec(this)' id=('declined' + RowId)><i class='fa fa-close' style='color:darkslategray'></i></button>"+
-  "<button id=('nameText' + RowId) class='RnameText'>"+raiders[rown-1]+"</button>";
+  "<button id=('nameText' + RowId) class='RnameText'>"+raiderObjects[rown-1].nameN+"</button>";
   cell.style.width="130px";
 }
 
@@ -97,7 +109,7 @@ function createCell(cell, rown, i) {
   cellid = "r" + [rown] + "c" + [i];
   setdraftid = "setDraftStatus" + cellid
   cell.innerHTML =
-"<button id="+setdraftid+" class='tbutton' onclick='setDraftStatus(this)'></button>" +
+"<button id="+setdraftid+" class='tbutton' onclick='setDraftStatus(this," + rown+")'></button>" +
 "<button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(this)''></button>";
   document.getElementById(setdraftid).innerText = "-";
 }
@@ -161,7 +173,7 @@ function createfirstrow(bosses, nofcolumns, row, rown){
     var table = document.getElementById("draftTable");
     var raiders = ["Vala", "Haseo", "Ilnezhara"];
     var bosses = ["Argus", "Aggramar", "Coven"];
-    var nofrows = raiders.length + 1;
+    var nofrows = raiderObjects.length + 1;
     var nofcolumns = bosses.length + 2;
     for (i=0; i<nofrows; i++){
       var rown = i
@@ -172,8 +184,8 @@ function createfirstrow(bosses, nofcolumns, row, rown){
         otherrows(raiders, nofcolumns, row, rown)
       }
     }}
-    function setDraftStatus(button){
-      var vala = "00101";
+    function setDraftStatus(button, rown){
+      var vala = raiderObjects[rown-1].offroleN;
       var raiderStatus = button
       raiderStatus.style.color = "black";
       if (raiderStatus.innerText === "DPS") {
@@ -206,7 +218,10 @@ function createfirstrow(bosses, nofcolumns, row, rown){
       } else if ((vala.charAt(2)) === "1") {
         raiderStatus.innerText = "healer";
         raiderStatus.style.backgroundColor = "DarkSeaGreen";
-    }} else {
+    } else {
+        raiderStatus.innerText = "-";
+        raiderStatus.style.backgroundColor = "white";
+  }} else {
         raiderStatus.innerText = "-";
         raiderStatus.style.backgroundColor = "white";
     }}
