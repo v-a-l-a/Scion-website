@@ -3,6 +3,10 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+td {
+  width: 110px;
+  padding-left: 15px;
+}
 .tbutton, .sitButton, .accDec, .RnameText {
     height: 25px;
     cursor: pointer;
@@ -52,27 +56,71 @@ button:focus {outline:0;}
   width: 90px;
   display: inline-block;
 }
+.decl {}
+.acces {}
+.notchosen {}
 </style>
 <script>
+function Raider(id, name, role, offrole){
+  this.idN = id;
+  this.nameN = name;
+  this.roleN = role;
+  this.offroleN = offrole;
+}
+lines = ["Vala", "healer", "01000"];
+line1 = ["Haseo", "DPSr", "00000"];
+line2 = ["Bossly", "tank", "10000"];
+line3 = ["Ilne", "DPSm", "00010"];
+columns = ["Argus", "Aggramar", "Coven"]
+raiderObjects = [];
+for (i=0; i<5; i++) {
+  var raider = "raider" + i;
+  if (i === 0){
+    lines = ["Vala", "healer", "00100"];
+  } else if (i === 1){
+    lines = ["Haseo", "DPSr", "00001"];
+  } else if (i === 2){
+    lines = ["Bossly", "tank", "10000"];
+  }  else if (i===3){
+    lines = ["Yrall", "healer", "10001"]
+  } else {
+    lines = ["Ilne", "DPSx", "00010"];
+  }
+  var raider = new Raider("ID?", lines[0], lines[1], lines[2]);
+  raiderObjects.push(raider);
+}
+
 function otherrows(raiders, nofcolumns, row, rown){
   for (i=0; i<nofcolumns; i++) {
         var cell = row.insertCell(i);
           if (i===0){
-            cell.innerHTML = raiders[rown-1];
+            createCell1(cell, row, i, raiders, rown)
+      } else if (i===1) {
+        cell.innerHTML = raiderObjects[rown-1].roleN;
       } else {
           createCell(cell, rown, i)
         }} i = rown
 }
+function createCell1(cell, row, i, raiders, rown){
+  RowId = row;
+  cell.innerHTML =
+  "<button class ='accDec' onclick='setAcc(this)' id=('accepted' + RowId)><i class='fa fa-check' style='color:DarkSeaGreen'></i></button>"+
+  "<button class ='accDec' onclick='setDec(this)' id=('declined' + RowId)><i class='fa fa-close' style='color:darkslategray'></i></button>"+
+  "<button id=('nameText' + RowId) class='RnameText'>"+raiderObjects[rown-1].nameN+"</button>";
+  cell.style.width="130px";
+}
+
 function createCell(cell, rown, i) {
   cellid = "r" + [rown] + "c" + [i];
   setdraftid = "setDraftStatus" + cellid
   cell.innerHTML =
-"<button id="+setdraftid+" class='tbutton' onclick='setDraftStatus(cellid)'>" + cellid +
-"</button><button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(cellid)''></button>"
+"<button id="+setdraftid+" class='tbutton' onclick='setDraftStatus(this," + rown+")'></button>" +
+"<button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(this)''></button>";
+  document.getElementById(setdraftid).innerText = "-";
 }
 
-function setAsStandby(cellid) {
-  var standbyTicked = document.getElementById("setDraftStatus" + cellid);
+function setAsStandby(button) {
+  var standbyTicked = button.parentElement.getElementsByClassName("tbutton")[0];
   standbyTicked.style.backgroundColor = "darkslategray";
   standbyTicked.innerText = "standby";
   standbyTicked.style.color = "white";
@@ -82,30 +130,34 @@ function setColour(varName, bcCol, textCol, borderCol) {
   varName.style.border = borderCol;
   varName.style.color = textCol;
 }
-function setAcc(cellid) {
-  var varName = document.getElementById("nameText" + cellid);
+function setAcc(button) {
+  var varName = button.parentElement.getElementsByClassName("RnameText")[0];
   if (varName.style.backgroundColor == "darkseagreen") {
     var bcCol = "white";
     var textCol = "black";
     var borderCol = "white";
+        button.parentElement.class = "notchosen";
     setColour(varName, bcCol, textCol, borderCol)
   } else {
     var bcCol = "DarkSeaGreen";
     var textCol = "white";
     var borderCol = "DarkSeaGreen";
+        button.parentElement.class = "acces";
     setColour(varName, bcCol, textCol, borderCol)
   }}
-function setDec(cellid){
-  var varName = document.getElementById("nameText" + cellid);
+function setDec(button){
+  var varName = button.parentElement.getElementsByClassName("RnameText")[0];
   if (varName.style.backgroundColor == "darkslategray") {
     var bcCol = "white";
     var textCol = "black";
     var borderCol = "white";
+    button.parentElement.class = "notchosen";
     setColour(varName, bcCol, textCol, borderCol)
   } else {
     var bcCol = "darkslategray";
     var textCol = "white";
     var borderCol = "darkslategray";
+    button.parentElement.class = "decl";
     setColour(varName, bcCol, textCol, borderCol)
   }}
 
@@ -114,16 +166,20 @@ function createfirstrow(bosses, nofcolumns, row, rown){
     var cell = row.insertCell(i);
       if (i===0){
         cell.innerHTML = "";
+      } else if (i===1){
+        cell.innerHTML = "R";
       } else
-    cell.innerHTML = bosses[i-1];
+    cell.innerHTML = bosses[i-2];
+    cell.style.textAlign="center";
+    cell.style.height="50px";
   } i = rown
 }
   function createTable(){
     var table = document.getElementById("draftTable");
     var raiders = ["Vala", "Haseo", "Ilnezhara"];
     var bosses = ["Argus", "Aggramar", "Coven"];
-    var nofrows = raiders.length + 1;
-    var nofcolumns = bosses.length + 1;
+    var nofrows = raiderObjects.length + 1;
+    var nofcolumns = bosses.length + 2;
     for (i=0; i<nofrows; i++){
       var rown = i
       var row = table.insertRow(i);
@@ -133,8 +189,8 @@ function createfirstrow(bosses, nofcolumns, row, rown){
         otherrows(raiders, nofcolumns, row, rown)
       }
     }}
-    function setDraftStatus(button){
-      var vala = "00101";
+function setDraftStatus(button, rown){
+      var vala = raiderObjects[rown-1].offroleN;
       var raiderStatus = button
       raiderStatus.style.color = "black";
       if (raiderStatus.innerText === "DPS") {
@@ -167,22 +223,117 @@ function createfirstrow(bosses, nofcolumns, row, rown){
       } else if ((vala.charAt(2)) === "1") {
         raiderStatus.innerText = "healer";
         raiderStatus.style.backgroundColor = "DarkSeaGreen";
-    }} else {
+    } else {
+        raiderStatus.innerText = "-";
+        raiderStatus.style.backgroundColor = "white";
+  }} else {
         raiderStatus.innerText = "-";
         raiderStatus.style.backgroundColor = "white";
     }}
+function hideShowDeclined(){
+  var dectext = document.getElementById("HiDe").innerText;
+  if (dectext === "Hide Declined") {
+    hideDeclined()
+  } else {showDeclined()}
+}
+
+function showDeclined(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  for (i=1; i<nofr; i++){
+      table.rows[i].style.display = "";
+    }
+  document.getElementById("HiDe").innerText = "Hide Declined";
+    document.getElementById("numAcc").innerText = "";
+}
+function sortTable(){
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("draftTable");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    for (i=1; i< (rows.length -1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    } if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+function separateHealers(){
+  var table, rows, columns, i, x, y, z;
+  table = document.getElementById("draftTable");
+  rows = table.getElementsByTagName("TR");
+  columns = 5;
+  healcol = "#c3a2a2";
+    for (i=1; i< (rows.length -1); i++) {
+      numb = i;
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      if (x.innerHTML ==="tank" && y.innerHTML ==="healer") {
+        var firstHealer = i + 1;
+        for (i=1; i<columns; i++) {
+          z = rows[firstHealer].getElementsByTagName("TD")[i];
+          z.style.backgroundColor= healcol;
+        } i = numb;
+      } else if (x.innerHTML ==="healer" && y.innerHTML ==="DPSx") {
+      var lastHealer = i;
+      for (i=1; i<columns; i++) {
+        z = rows[numb].getElementsByTagName("TD")[i];
+        z.style.backgroundColor= healcol;
+      } i = numb;
+    } else if (x.innerHTML === "healer"){
+      for (i=1; i<columns; i++) {
+        z = rows[numb].getElementsByTagName("TD")[i];
+        z.style.backgroundColor= healcol;
+    } i = numb;
+  }
+}}
+function hideRoleColumn(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  for (i=0; i<nofr; i++){
+    table.rows[i].cells[1].style.display = "none";
+}}
+function tableLoad(){
+  createTable();
+  sortTable();
+  separateHealers();
+  hideRoleColumn();
+}
+function hideDeclined(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  var numAcce = 0;
+  for (i=1; i<nofr; i++){
+    var cellstatus = table.rows[i].cells[0];
+    if (cellstatus.class === "decl") {
+      table.rows[i].style.display = "none";
+    } else if(cellstatus.class === "acces") {
+      numAcce = numAcce + 1;
+    }  }
+  document.getElementById("HiDe").innerText = "Show Declined";
+  document.getElementById("numAcc").innerText = "Total Accepted: " + numAcce;
+}
 </script>
 </head>
-<body>
-<table id="draftTable">
+<body onload = "tableLoad()">
+<table id="draftTable" cellspacing="0">
 </table>
-<button id ="createT" onclick="createTable()"></button>
+<br><br>
+<p id="numAcc"></p><button id="HiDe" onclick="hideShowDeclined()">Hide Declined</button>
+<p style="display:none">
   <button class ="accDec" onclick="setAcc()" id="accepted"><i class="fa fa-check" style="color:DarkSeaGreen"></i></button>
   <button class ="accDec" onclick="setDec()" id="declined"><i class="fa fa-close" style="color:darkslategray"></i></button>
   <button id="nameText" class="RnameText">Name</button>
   <button class="tbutton" onclick="setDraftStatus(this)">-</button>
-  <button class="sitButton" id="setStandby" onclick="setAsStandby()"></button>
-<!--"<button class ='accDec' onclick='setAcc(cellid)' id=('accepted' + cellid)><i class='fa fa-check' style='color:DarkSeaGreen'></i></button><button class ='accDec' onclick='setDec(cellid)' id=('declined' + cellid)><i class='fa fa-close' style='color:darkslategray'></i></button><button id=('nameText'+cellid) class='RnameText'>Name</button>"
--->
+  <button class="sitButton" id="setStandby" onclick="setAsStandby()"></button></p>
 </body>
 </html>
