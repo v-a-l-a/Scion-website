@@ -69,17 +69,20 @@ lines = ["Vala", "healer", "01000"];
 line1 = ["Haseo", "DPSr", "00000"];
 line2 = ["Bossly", "tank", "10000"];
 line3 = ["Ilne", "DPSm", "00010"];
+columns = ["Argus", "Aggramar", "Coven"]
 raiderObjects = [];
-for (i=0; i<4; i++) {
+for (i=0; i<5; i++) {
   var raider = "raider" + i;
   if (i === 0){
-    lines = ["Vala", "healer", "00010"];
+    lines = ["Vala", "healer", "00100"];
   } else if (i === 1){
     lines = ["Haseo", "DPSr", "00001"];
   } else if (i === 2){
-    lines = ["Bossly", "tank", "10001"];
-  }  else {
-    lines = ["Ilne", "DPSm", "00101"];
+    lines = ["Bossly", "tank", "10000"];
+  }  else if (i===3){
+    lines = ["Yrall", "healer", "10001"]
+  } else {
+    lines = ["Ilne", "DPSx", "00010"];
   }
   var raider = new Raider("ID?", lines[0], lines[1], lines[2]);
   raiderObjects.push(raider);
@@ -164,7 +167,7 @@ function createfirstrow(bosses, nofcolumns, row, rown){
       } else if (i===1){
         cell.innerHTML = "R";
       } else
-    cell.innerHTML = bosses[i-1];
+    cell.innerHTML = bosses[i-2];
     cell.style.textAlign="center";
     cell.style.height="50px";
   } i = rown
@@ -252,10 +255,61 @@ function hideDeclined(){
   }
   document.getElementById("HiDe").innerText = "Show Declined";
 }
+function sortTable(){
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("draftTable");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    for (i=1; i< (rows.length -1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    } if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+function separateHealers(){
+  var table, rows, columns, i, x, y, z;
+  table = document.getElementById("draftTable");
+  rows = table.getElementsByTagName("TR");
+  columns = 5;
+    for (i=1; i< (rows.length -1); i++) {
+      numb = i;
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      if (x.innerHTML ==="tank" && y.innerHTML ==="healer") {
+        var firstHealer = i + 1;
+        for (i=0; i<columns; i++) {
+          z = rows[firstHealer].getElementsByTagName("TD")[i];
+          z.style.borderTop="solid 3px darkslategray";
+        } i = numb;
+      } else if (x.innerHTML ==="healer" && y.innerHTML ==="DPSx") {
+      var lastHealer = i;
+      for (i=0; i<columns; i++) {
+        z = rows[numb].getElementsByTagName("TD")[i];
+        z.style.borderBottom="solid 3px darkslategray";
+      } i = numb;
+    }
+  }
+}
+function tableLoad(){
+  createTable();
+  sortTable();
+  separateHealers();
+}
+
 </script>
 </head>
-<body onload = "createTable()">
-<table id="draftTable">
+<body onload = "tableLoad()">
+<table id="draftTable" cellspacing="0">
 </table>
 <br><br>
 <button id="HiDe" onclick="hideShowDeclined()">Hide Declined</button>
