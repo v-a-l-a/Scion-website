@@ -4,7 +4,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 td {
-  width: 100px;
+  width: 110px;
+  padding-left: 15px;
 }
 .tbutton, .sitButton, .accDec, .RnameText {
     height: 25px;
@@ -57,6 +58,7 @@ button:focus {outline:0;}
 }
 .decl {}
 .acces {}
+.notchosen {}
 </style>
 <script>
 function Raider(id, name, role, offrole){
@@ -134,7 +136,7 @@ function setAcc(button) {
     var bcCol = "white";
     var textCol = "black";
     var borderCol = "white";
-        button.parentElement.class = "acces";
+        button.parentElement.class = "notchosen";
     setColour(varName, bcCol, textCol, borderCol)
   } else {
     var bcCol = "DarkSeaGreen";
@@ -149,7 +151,7 @@ function setDec(button){
     var bcCol = "white";
     var textCol = "black";
     var borderCol = "white";
-    button.parentElement.class = "acces";
+    button.parentElement.class = "notchosen";
     setColour(varName, bcCol, textCol, borderCol)
   } else {
     var bcCol = "darkslategray";
@@ -187,7 +189,7 @@ function createfirstrow(bosses, nofcolumns, row, rown){
         otherrows(raiders, nofcolumns, row, rown)
       }
     }}
-    function setDraftStatus(button, rown){
+function setDraftStatus(button, rown){
       var vala = raiderObjects[rown-1].offroleN;
       var raiderStatus = button
       raiderStatus.style.color = "black";
@@ -242,18 +244,7 @@ function showDeclined(){
       table.rows[i].style.display = "";
     }
   document.getElementById("HiDe").innerText = "Hide Declined";
-}
-
-function hideDeclined(){
-  var table = document.getElementById("draftTable");
-  var nofr = table.rows.length;
-  for (i=1; i<nofr; i++){
-    var cellstatus = table.rows[i].cells[0];
-    if (cellstatus.class === "decl") {
-      table.rows[i].style.display = "none";
-    }
-  }
-  document.getElementById("HiDe").innerText = "Show Declined";
+    document.getElementById("numAcc").innerText = "";
 }
 function sortTable(){
   var table, rows, switching, i, x, y, shouldSwitch;
@@ -305,19 +296,39 @@ function separateHealers(){
     } i = numb;
   }
 }}
+function hideRoleColumn(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  for (i=0; i<nofr; i++){
+    table.rows[i].cells[1].style.display = "none";
+}}
 function tableLoad(){
   createTable();
   sortTable();
   separateHealers();
+  hideRoleColumn();
 }
-
+function hideDeclined(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  var numAcce = 0;
+  for (i=1; i<nofr; i++){
+    var cellstatus = table.rows[i].cells[0];
+    if (cellstatus.class === "decl") {
+      table.rows[i].style.display = "none";
+    } else if(cellstatus.class === "acces") {
+      numAcce = numAcce + 1;
+    }  }
+  document.getElementById("HiDe").innerText = "Show Declined";
+  document.getElementById("numAcc").innerText = "Total Accepted: " + numAcce;
+}
 </script>
 </head>
 <body onload = "tableLoad()">
 <table id="draftTable" cellspacing="0">
 </table>
 <br><br>
-<button id="HiDe" onclick="hideShowDeclined()">Hide Declined</button>
+<p id="numAcc"></p><button id="HiDe" onclick="hideShowDeclined()">Hide Declined</button>
 <p style="display:none">
   <button class ="accDec" onclick="setAcc()" id="accepted"><i class="fa fa-check" style="color:DarkSeaGreen"></i></button>
   <button class ="accDec" onclick="setDec()" id="declined"><i class="fa fa-close" style="color:darkslategray"></i></button>
