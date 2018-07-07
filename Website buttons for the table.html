@@ -281,25 +281,30 @@ function separateHealers(){
   table = document.getElementById("draftTable");
   rows = table.getElementsByTagName("TR");
   columns = 5;
+  healcol = "#c3a2a2";
     for (i=1; i< (rows.length -1); i++) {
       numb = i;
       x = rows[i].getElementsByTagName("TD")[1];
       y = rows[i + 1].getElementsByTagName("TD")[1];
       if (x.innerHTML ==="tank" && y.innerHTML ==="healer") {
         var firstHealer = i + 1;
-        for (i=0; i<columns; i++) {
+        for (i=1; i<columns; i++) {
           z = rows[firstHealer].getElementsByTagName("TD")[i];
-          z.style.borderTop="solid 3px darkslategray";
+          z.style.backgroundColor= healcol;
         } i = numb;
       } else if (x.innerHTML ==="healer" && y.innerHTML ==="DPSx") {
       var lastHealer = i;
-      for (i=0; i<columns; i++) {
+      for (i=1; i<columns; i++) {
         z = rows[numb].getElementsByTagName("TD")[i];
-        z.style.borderBottom="solid 3px darkslategray";
+        z.style.backgroundColor= healcol;
       } i = numb;
-    }
+    } else if (x.innerHTML === "healer"){
+      for (i=1; i<columns; i++) {
+        z = rows[numb].getElementsByTagName("TD")[i];
+        z.style.backgroundColor= healcol;
+    } i = numb;
   }
-}
+}}
 function tableLoad(){
   createTable();
   sortTable();
