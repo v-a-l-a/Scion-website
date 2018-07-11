@@ -8,7 +8,8 @@ p {
 }
 td {
   width: 110px;
-  padding-left: 15px;
+  padding: 1px 1px 2px 0px;
+  text-align: center;
 }
 .tableButtons {
   background-color: white;
@@ -126,14 +127,14 @@ function Boss(bossname, mintanks, maxtanks, minhealers, maxhealers, tier){
   this.Bmaxhealers = maxhealers;
   this.Btier = tier;
 }
-Tier1 = ["Garothi", "Felhounds", "High Command", "Eonar", "Hasabel"];
+Tier1 = ["Garothi", "Felhounds", "AHC", "Eonar", "Hasabel"];
 Tier2 = ["Imonar", "Kin", "Vari", "Coven"];
 Tier3 = ["Aggramar", "Argus"];
 tiers = ["Tier1", "Tier2", "Tier3"];
 bossObjectArray = [];
 for (i=0; i<3; i++){
   if (i===0){
-    Tier = ["Garothi", "Felhounds", "High Command", "Eonar", "Hasabel"];
+    Tier = ["Garothi", "Felhounds", "AHC", "Eonar", "Hasabel"];
     tierName = "Tier0";
     for (i=0; i <5; i++){
     bossname = Tier[i];
@@ -398,22 +399,24 @@ function tableLoad(){
   hideRoleColumn();
   createCountertable();
   createTierList();
-  table = document.getElementById("draftTable");
-  var nofr = table.rows.length;
-  for (i=0; i<nofr; i++){
-    table.rows[i].style.display = "none";
-}}
+}
 function showBossColumn(saveBosses){
   var table = document.getElementById("draftTable");
   var nofr = table.rows.length;
   for (i=0; i<bossObjectArray.length; i++) {
     bossi = bossObjectArray[i];
-  if (saveBosses.includes(bossi.Bname)){
-  cell = i + 2;
+    cell = i + 2;
+  if (saveBosses.includes(bossi.Bname) == false){
+  hideColumn(cell);
+  i = cell -2;
+  }}}
+function hideColumn(cell){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
   for (i=0; i<nofr; i++){
-    table.rows[i].cells[cell].style.display = "";
-} i = cell -2;
-}}}
+    table.rows[i].cells[cell].style.display = "none";
+}}
+
 function hideDeclined(){
   var table = document.getElementById("draftTable");
   var nofr = table.rows.length;
@@ -428,15 +431,18 @@ function hideDeclined(){
   document.getElementById("numAcc").innerText = "Total Accepted: " + numAcce;
 }
 function createCountertable(){
-  var table = document.getElementById("countertable");
-  row = table.insertRow(0);
-  columns = document.getElementById('draftTable').rows[0].cells.length - 1;
+  var table = document.getElementById('draftTable');
+  var nofr = table.rows.length;
+  row = table.insertRow(nofr);
+  columns = table.rows[0].cells.length;
   for (i=0; i<columns; i++) {
+      var cell = row.insertCell(i);
+      cell.class = "counttable"
     if (i===0) {
-    var cell = row.insertCell(i);
     cell.innerText = "n. to sit:";
-  } else {
-  var cell = row.insertCell(i);
+  } else if (i===1) {
+  cell.style.display = "none"; }
+  else {
   var clicks = 0;
   cell.innerHTML = clicks;
 }}}
