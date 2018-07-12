@@ -17,7 +17,6 @@ function createCell1(cell, row, i, raiders, rown){
   "<button id=('nameText' + RowId) class='RnameText'>"+raiderObjects[rown-1].nameN+"</button>";
   cell.style.width="130px";
 }
-
 function createCell(cell, rown, i) {
   cellid = "r" + [rown] + "c" + [i];
   setdraftid = "setDraftStatus" + cellid;
@@ -26,7 +25,6 @@ function createCell(cell, rown, i) {
   "<button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(this,"+i+", "+rown+")'></button>";
   document.getElementById(setdraftid).innerText = "-";
 }
-
 function setAsStandby(button, i, rown) {
   var standbyTicked = button.parentElement.getElementsByClassName("tbutton")[0];
   standbyTicked.style.backgroundColor = "darkslategray";
@@ -72,7 +70,6 @@ function setDec(button){
     button.parentElement.class = "decl";
     setColour(varName, bcCol, textCol, borderCol)
   }}
-
 function createfirstrow(bosses, nofcolumns, row, rown){
   for (i=0; i<nofcolumns; i++) {
     var cell = row.insertCell(i);
@@ -245,8 +242,23 @@ function hideDeclined(){
     } else if(cellstatus.class === "acces") {
       numAcce = numAcce + 1;
     }  }
-  document.getElementById("numAcc").innerText = "Total Accepted: " + numAcce;
+  document.getElementById("totacc").innerText = "Accepted: " + numAcce;
+  document.getElementById("totacc").value = numAcce;
+  updateNtoSit();
 }
+function updateNtoSit(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  columns = table.rows[0].cells.length;
+  for (i=2; i<columns; i++){
+  cellv = table.rows[nofr-1].cells[i];
+  if (typeof cellv.value !='undefined') {
+  numSby = cellv.value;
+} else {
+  numSby = 0;
+} totnum = document.getElementById("totacc").value;
+  cellv.innerHTML = totnum - 20 - numSby;
+}}
 function createCountertable(){
   var table = document.getElementById('draftTable');
   var nofr = table.rows.length;
@@ -256,25 +268,22 @@ function createCountertable(){
       var cell = row.insertCell(i);
       cell.class = "counttable"
     if (i===0) {
-    cell.innerText = "n. to sit:";
+    cell.id="totacc";
   } else if (i===1) {
   cell.style.display = "none"; }
-  else {
-  var clicks = 0;
-  cell.innerHTML = clicks;
-}}}
+}}
 function counterTableShow(cellnu){
   var table = document.getElementById("draftTable");
   var nofr = table.rows.length;
   var numSby = 0;
-  for (i=1; i<nofr; i++){
+  for (i=1; i<nofr-1; i++){
     var cellstatus = table.rows[i].cells[cellnu];
     if (cellstatus.class === "standbyclass") {
       numSby = numSby + 1;
     }}
-  var ctable = document.getElementById("countertable");
-  totnum = document.getElementById("numAcc").innerHTML;
-  ctable.rows[0].cells[cellnu-1].innerHTML = totnum + " - " + numSby;
+  totnum = document.getElementById("totacc").value;
+  table.rows[nofr-1].cells[cellnu].innerHTML = totnum - 20 - numSby;
+  table.rows[nofr-1].cells[cellnu].value = numSby;
   }
 function createTierList(){
   var noftiers = 3;

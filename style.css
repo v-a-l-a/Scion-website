@@ -8,9 +8,12 @@ td {
 }
 .addnew {
   border: solid 2px darkslategray;
-  width: 500px;
+  display: inline-block;
   margin-left: 45px;
   padding: 10px 5px 5px 10px;
+}
+.background {
+  background-color: white;
 }
 
 .tableButtons {

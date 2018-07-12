@@ -7,7 +7,7 @@
 <script src="addnew.js"></script>
 <script src="tablecreation.js"></script>
 </head>
-<body onload = "tableLoad()">
+<body onload = "tableLoad()" class="background">
 <table id="draftTable" cellspacing="0">
 </table>
 <table id="countertable" cellspacing="0" class ="counttable"></table>
@@ -62,7 +62,9 @@
     <button id="hideAddedBoss" type="button" onclick="hide('AddFightBox')">Cancel</button>
     <p id="BossInfoAsText"></p>
   </form>
-  <p id = "tieradd"> Tier names will be displayed here</p> <button id ="tier" onclick = "addTier()">Add tier</button>
+  <p id = "tieradd">
+
+  </p> <button id ="tier" onclick = "addTier()">Add tier</button>
     <form id = "tierform" style ="display:none">
       Tier:<input id = "tiern" type="text">
       <button id="storedTierInfo" type="button" onclick="storeTierInfo()">Save</button>
