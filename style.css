@@ -7,21 +7,74 @@ td {
   text-align: center;
 }
 .addnew {
-  border: solid 2px darkslategray;
-  display: inline-block;
+  border: solid 2px #804d4d;
+  width: 120px;
   margin-left: 45px;
-  padding: 10px 5px 5px 10px;
+  padding: 10px 5px 5px 15px;
+  background-color: Ivory;
+  color: #804d4d;
+  float: left;
 }
 .background {
   background-color: white;
+}
+.addnew button {
+  background-color: white;
+  color: #804d4d;
+  border: 2px solid #804d4d;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  height: 30px;
+  width: 80px;
+  margin-left: 15px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.addnew button:hover {
+  background-color: #804d4d;
+  color: white;
+}
+.addnew button:first-child{
+  margin-top: 15px;
+}
+form {
+  margin-top: 0px;
+  margin-left: 10px;
+  padding: 8px;
+  line-height: 1.5;
+  color:  #804d4d;
+}
+.newForm {
+  position: relative;
+  float: left;
+  width: 400px;
+  height: 178px;
+  border: 2px solid #804d4d;
+  border-left: 0px;
+  padding: 0px;
+  background-color: Ivory;
+}
+.cancel, .save {
+  position: absolute;
+  bottom: 15px;
+}
+.cancel {
+  right: 20px;
+}
+.save {
+  right: 90px;
 }
 
 .tableButtons {
   background-color: white;
   border: 2px solid darkslategray;
-  margin-left: 50px;
-  margin-top: 5px;
+  margin-top: 7px;
 }
+.tableButtons {
+  margin-left: 50px;
+}
+
 .subtitle{
   color: darkslategray;
   margin: 0px 0px 0px 50px;

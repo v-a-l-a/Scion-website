@@ -24,12 +24,21 @@
   </div>
   <p id="tiersBosses"></p>
 <br><br><br>
-<div class ="addnew">
+<div class ="addnew"> ADD NEW:
   <button id ="AddRaider" type = "button"
   onclick = "toggleBox('AddRaiderBox')">
-  Add raider</button>
+  Raider</button>
+  <button id="AddFight" type="button"
+  onclick = "toggleBox('AddFightBox')">
+  Fight</button>
+  <p id = "tieradd">
+  </p> <button id ="tier" onclick = toggleBox('tierform')>Tier</button>
+  </div>
+
+  <div class ="newForm" id ="formDiv" style = "display:none">
   <form id = "AddRaiderBox" style = "display:none">
-    Name:<input id="AddedName" name="AddedName" type="text" required><br>
+    RAIDER: <br><br>
+    Name:  <input id="AddedName" name="AddedName" type="text" required><br>
     Role:<input id="AddedRole1" name="AddedRole" type="radio" value="melee DPS" checked>melee
     <input id="AddedRole2" name="AddedRole" type="radio" value="ranged DPS">ranged
     <input id="AddedRole3" name="AddedRole" type="radio" value="healer">healer
@@ -38,18 +47,17 @@
     <input id="OS2" type="checkbox" value="ranged DPS" name="OS2">ranged
     <input id="OS3" type="checkbox" value="healer" name="OS3">healer
     <input id="OS4" type="checkbox" value="tank" name="OS4">tank
-    <br>
-  <button type="button" onclick ="StoreRaiderInfo()">Save</button>
-  <button id ="HideAddRaider" type="button"
+  <button type="button" class ="save"
+  onclick ="StoreRaiderInfo()">Save</button>
+  <button id ="HideAddRaider" type="button" class = "cancel"
   onclick = "hide('AddRaiderBox')">Cancel</button>
   </form>
   <!--<input type="submit"> defines a button for submitting form data to a form-handler.-->
   <p id="StoredInfoAsText"></p>
-  <br><br><button id="AddFight" type="button"
-  onclick = "toggleBox('AddFightBox')">
-  Add fight</button>
+
   <form id = "AddFightBox" style = "display:none">
-    Name:<input id="AddedBossName" name="AddedBossName" type="text"><br>
+    FIGHT: <br><br>
+    Name:  <input id="AddedBossName" name="AddedBossName" type="text"><br>
     tanks:<input id="tanks1" type="checkbox" value="1" name="tanks1">1
     <input id="tanks2" type = "checkbox" value="2" name="tanks2">2
     <input id="tanks3" type = "checkbox" value="3" name="tanks3">3
@@ -58,18 +66,21 @@
     <input id="healers4" type = "checkbox" value="4" name="healers4">4
     <input id="healers5" type = "checkbox" value="5" name="healers5">5
     <input id="healers6" type = "checkbox" value="6" name="healers6">6
-    <br><button id="StoredBossInfo" type="button" onclick="StoreBossInfo()">Save</button>
-    <button id="hideAddedBoss" type="button" onclick="hide('AddFightBox')">Cancel</button>
+    <br><button id="StoredBossInfo" type="button" class ="save"
+    onclick="StoreBossInfo()">Save</button>
+    <button id="hideAddedBoss" type="button" class = "cancel"
+    onclick="hide('AddFightBox')">Cancel</button>
     <p id="BossInfoAsText"></p>
   </form>
-  <p id = "tieradd">
 
-  </p> <button id ="tier" onclick = "addTier()">Add tier</button>
-    <form id = "tierform" style ="display:none">
-      Tier:<input id = "tiern" type="text">
-      <button id="storedTierInfo" type="button" onclick="storeTierInfo()">Save</button>
-      <button id="hideTierForm" type="button" onclick="hide('tierform')">Cancel</button>
-    </form>
+  <form id = "tierform" style ="display:none">
+    TIER: <br><br>
+    Name:  <input id = "tiern" type="text">
+    <button id="storedTierInfo" type="button" class ="save"
+    onclick="storeTierInfo()">Save</button>
+    <button id="hideTierForm" type="button" class = "cancel"
+    onclick="hide('tierform')">Cancel</button>
+  </form>
   </div>
 </body>
 </html>

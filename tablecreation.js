@@ -213,6 +213,7 @@ function tableLoad(){
   hideRoleColumn();
   createCountertable();
   createTierList();
+  updateNtoSit();
 }
 function showBossColumn(saveBosses){
   var table = document.getElementById("draftTable");
@@ -230,7 +231,6 @@ function hideColumn(cell){
   for (i=0; i<nofr; i++){
     table.rows[i].cells[cell].style.display = "none";
 }}
-
 function hideDeclined(){
   var table = document.getElementById("draftTable");
   var nofr = table.rows.length;
@@ -254,11 +254,14 @@ function updateNtoSit(){
   cellv = table.rows[nofr-1].cells[i];
   if (typeof cellv.value !='undefined') {
   numSby = cellv.value;
-} else {
+  } else {
   numSby = 0;
-} totnum = document.getElementById("totacc").value;
-  cellv.innerHTML = totnum - 20 - numSby;
-}}
+  } totnum = document.getElementById("totacc").value;
+  if (typeof totnum ==='undefined') {
+  totnum = 0;
+  } cellv.innerHTML = totnum - 20 - numSby;
+  checkifnegative(cellv);}
+  }
 function createCountertable(){
   var table = document.getElementById('draftTable');
   var nofr = table.rows.length;
@@ -282,15 +285,21 @@ function counterTableShow(cellnu){
       numSby = numSby + 1;
     }}
   totnum = document.getElementById("totacc").value;
-  table.rows[nofr-1].cells[cellnu].innerHTML = totnum - 20 - numSby;
-  table.rows[nofr-1].cells[cellnu].value = numSby;
+  if (typeof totnum === 'undefined') {
+    totnum = 0;
+  }
+  var countcell = table.rows[nofr-1].cells[cellnu];
+  countcell.innerHTML = totnum - 20 - numSby;
+  countcell.value = numSby;
+  checkifnegative(countcell);
   }
 function createTierList(){
-  var noftiers = 3;
+  var noftiers = tiersArray.length;
   for (i=0; i<noftiers; i++){
     buttonid = "b" + i;
+    tiername = tiersArray[i];
     document.getElementById("tierSelection").innerHTML +=
-    "<button id="+buttonid+" onclick='showTierBosses(this)'>"+i+"</button>"
+    "<button id="+buttonid+" onclick='showTierBosses(this)'>"+tiername+"</button>"
   }
 }
 function showTierBosses(button){
@@ -317,6 +326,11 @@ function selectBosses(){
       bossnam = bossesChosen[i].id;
       saveBosses.push(bossnam);
   }
-} if (saveBosses.length > 0) {
+  } if (saveBosses.length > 0) {
   showBossColumn(saveBosses);
 }}
+function checkifnegative(cell){
+  if (cell.innerHTML <0) {
+    cell.innerHTML = "-";
+  }
+}
