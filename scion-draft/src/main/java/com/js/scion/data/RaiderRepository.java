@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.js.scion.model;
+package com.js.scion.data;
 
+import com.js.scion.model.Raider;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -15,5 +16,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface RaiderRepository extends MongoRepository<Raider, String>{
     
     public Raider findByName(String name);
-    public List<Raider> findByClass(String clas);
+    public List<Raider> findByRole(String role);
 }

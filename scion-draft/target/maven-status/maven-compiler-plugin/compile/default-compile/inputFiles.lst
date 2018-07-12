@@ -1,2 +1,9 @@
-/Users/jack/NetBeansProjects/scion-draft/src/main/java/com/js/scion/Application.java
-/Users/jack/NetBeansProjects/scion-draft/src/main/java/com/js/scion/GreetingController.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/model/RaiderStatus.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/model/Draft.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/model/Raider.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/GreetingController.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/model/Boss.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/RaiderController.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/Application.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/model/Tier.java
+/home/sjack/code/Scion-website/scion-draft/src/main/java/com/js/scion/model/RaiderRepository.java

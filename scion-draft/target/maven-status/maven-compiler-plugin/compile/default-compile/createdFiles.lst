@@ -1,2 +1,9 @@
+com/js/scion/model/RaiderStatus.class
+com/js/scion/model/Boss.class
+com/js/scion/model/Tier.class
+com/js/scion/model/Raider.class
 com/js/scion/Application.class
+com/js/scion/model/RaiderRepository.class
 com/js/scion/GreetingController.class
+com/js/scion/RaiderController.class
+com/js/scion/model/Draft.class
