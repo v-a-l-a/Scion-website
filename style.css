@@ -1,0 +1,115 @@
+p {
+  margin: 0px 0px 0px 50px;
+}
+td {
+  width: 110px;
+  padding: 1px 1px 2px 0px;
+  text-align: center;
+}
+.addnew {
+  border: solid 2px darkslategray;
+  width: 500px;
+  margin-left: 45px;
+  padding: 10px 5px 5px 10px;
+}
+
+.tableButtons {
+  background-color: white;
+  border: 2px solid darkslategray;
+  margin-left: 50px;
+  margin-top: 5px;
+}
+.subtitle{
+  color: darkslategray;
+  margin: 0px 0px 0px 50px;
+}
+
+.tierSelectionBar button {
+  padding: 2px 5px;
+  overflow: hidden;
+  background-color: darkslategray;
+  width: 100px;
+  float:left;
+  color: white;
+  text-align: center;
+  border: 2px solid darkslategray;
+  margin: 0px 0px 0px 50px;
+}
+.tierSelection button:not(:last-child){
+  border-right: none;
+}
+.tierSelectionBar button:not(:first-child){
+  margin: 0px;
+}
+.tierSelectionBar:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.tierSelectionBar button:focus {
+  background-color: #ded1d1;
+  color: black;
+}
+.tierSelectionBar button:hover{
+  opacity: 0.9;
+}
+
+.tbutton, .sitButton, .accDec, .RnameText, .tierSelectionBar button, .tableButtons {
+    height: 25px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.tbutton {
+  background-color: white;
+  border-left: 2px solid darkslategray;
+  border-top: 2px solid darkslategray;
+  border-bottom: 2px solid darkslategray;
+  border-right: 1px solid darkslategray;
+  text-align: center;
+  padding: 0 0 0 25px;
+  display: inline-block;
+  border-radius: 8px 0 0 8px;
+  width: 70px;
+}
+button:focus {outline:0;}
+.tbutton:hover {
+  opacity: 0.9;
+}
+.sitButton {
+  width: 25px;
+  border-radius: 0 8px 8px 0;
+  background-color: darkslategray;
+  border: 2px solid darkslategray;
+  position: absolute;
+  display: inline;
+  text-align: center;
+}
+.sitButton:hover {
+  opacity: 0.9;
+}
+.RnameText, .accDec {
+  background-color: white;
+  border: 2px solid white;
+  box-shadow: none;
+}
+.accDec {
+  text-align: center;
+  width: 10px;
+  margin-right: 3px;
+  font-size: 12px;
+}
+.RnameText {
+  text-align: left;
+  width: 90px;
+  display: inline-block;
+}
+.counttable {
+  height: 50px;
+  text-align: center;
+  font-size: 12px;
+}
+.decl {}
+.acces {}
+.notchosen {}
+  .standbyclass {}
+    .notstandby {}
