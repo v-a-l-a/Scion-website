@@ -143,3 +143,16 @@ function storeTierInfo(){
   document.getElementById("tieradd").innerHTML += tier.Tiername;
   hide('tierform');
 }
+function showTab(idT){
+  var aBox = document.getElementById(idT);
+  aBox.style.display = "";
+  document.getElementById("optionsTab").style.display = "none";
+  document.getElementById("closeB").style.display ="";
+}
+function closeTab(idT, button){
+  var aBox = document.getElementById(idT);
+  aBox.style.display = "none";
+  document.getElementById("closeB").style.display = "none";
+  document.getElementById("formDiv").style.display = "none";
+  document.getElementById("optionsTab").style.display = "";
+}

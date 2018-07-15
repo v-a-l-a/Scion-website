@@ -14,7 +14,7 @@
 <br><br>
 <p id="numAcc"></p><button id="HiShow" class ="tableButtons" onclick="showDeclined()">Show All</button><br>
 <button id="HiDe" class ="tableButtons" onclick="hideDeclined()">Hide Declined</button>
-<p style="display:none">
+<p style = "display:none">
   <button class ="accDec" onclick="setAcc()" id="accepted"><i class="fa fa-check" style="color:DarkSeaGreen"></i></button>
   <button class ="accDec" onclick="setDec()" id="declined"><i class="fa fa-close" style="color:darkslategray"></i></button>
   <button id="nameText" class="RnameText">Name</button>
@@ -24,7 +24,11 @@
   </div>
   <p id="tiersBosses"></p>
 <br><br><br>
-<div class ="addnew"> ADD NEW:
+<div class = "bottomTab">
+  <div id ="optionsTab" class = "optionTab"><button onclick="showTab('editTab', this)"
+    class = "tabButtons" id="addButton" style = "vertical-align:middle"><span>EDIT </span></button></div>
+  <div id = "closeB" style = "display:none" class = "tabClose"><button onclick = "closeTab('editTab', this)">CLOSE</button></div>
+<div class ="addnew" id="editTab" style = "display:none"> ADD NEW:
   <button id ="AddRaider" type = "button"
   onclick = "toggleBox('AddRaiderBox')">
   Raider</button>
@@ -56,7 +60,7 @@
   <p id="StoredInfoAsText"></p>
 
   <form id = "AddFightBox" style = "display:none">
-    FIGHT: <br><br>
+    FIGHT:<br><br>
     Name:  <input id="AddedBossName" name="AddedBossName" type="text"><br>
     tanks:<input id="tanks1" type="checkbox" value="1" name="tanks1">1
     <input id="tanks2" type = "checkbox" value="2" name="tanks2">2
@@ -82,5 +86,6 @@
     onclick="hide('tierform')">Cancel</button>
   </form>
   </div>
+</div>
 </body>
 </html>
