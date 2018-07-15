@@ -146,13 +146,25 @@ function storeTierInfo(){
 function showTab(idT){
   var aBox = document.getElementById(idT);
   aBox.style.display = "";
-  document.getElementById("optionsTab").style.display = "none";
+  if (idT === "editTab"){
   document.getElementById("closeB").style.display ="";
-}
+  document.getElementById("optionsTab").style.display = "none";
+  document.getElementById("draftLeft").style.display ="none";
+  document.getElementById("closeLeft").style.display ="none";
+  document.getElementById("optionsLeft").style.display = "";
+  } else {
+  document.getElementById("closeLeft").style.display ="";
+  document.getElementById("optionsLeft").style.display = "none";
+  document.getElementById("editTab").style.display ="none";
+  document.getElementById("closeB").style.display ="none";
+  document.getElementById("optionsTab").style.display = "";
+  }}
 function closeTab(idT, button){
   var aBox = document.getElementById(idT);
   aBox.style.display = "none";
   document.getElementById("closeB").style.display = "none";
+  document.getElementById("closeLeft").style.display = "none";
   document.getElementById("formDiv").style.display = "none";
   document.getElementById("optionsTab").style.display = "";
+  document.getElementById("optionsLeft").style.display = "";
 }

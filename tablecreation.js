@@ -300,8 +300,7 @@ function createTierList(){
     tiername = tiersArray[i];
     document.getElementById("tierSelection").innerHTML +=
     "<button id="+buttonid+" onclick='showTierBosses(this)'>"+tiername+"</button>"
-  }
-}
+  } }
 function showTierBosses(button){
   i = button.innerHTML;
   tierchosen = tiers[i];
@@ -314,7 +313,7 @@ function showTierBosses(button){
       checkboxname = "boss" +i;
       idname = bossObjectArray[i].Bname;
     tierchoices.innerHTML +=
-    "<input id="+idname+" class='bossCheckBox' type = 'checkbox' name="+checkboxname+">"+idname + " ";
+    "<input id="+idname+" class='bossCheckBox' type = 'checkbox' name="+checkboxname+">"+idname + " " +"<br>";
     }}
   tierchoices.innerHTML += "<br>" + "<br>" + "<button onclick ='selectBosses()'>Select</button>"
 }

@@ -14,16 +14,15 @@
 <br><br>
 <p id="numAcc"></p><button id="HiShow" class ="tableButtons" onclick="showDeclined()">Show All</button><br>
 <button id="HiDe" class ="tableButtons" onclick="hideDeclined()">Hide Declined</button>
-<p style = "display:none">
-  <button class ="accDec" onclick="setAcc()" id="accepted"><i class="fa fa-check" style="color:DarkSeaGreen"></i></button>
-  <button class ="accDec" onclick="setDec()" id="declined"><i class="fa fa-close" style="color:darkslategray"></i></button>
-  <button id="nameText" class="RnameText">Name</button>
-  <button class="tbutton" onclick="setDraftStatus(this)">-</button>
-  <button class="sitButton" id="setStandby" onclick="setAsStandby()"></button></p>
-  <br><br><br><br><p class="subtitle">DRAFT FOR BOSSES:</p><div id = "tierSelection" class="tierSelectionBar">
-  </div>
-  <p id="tiersBosses"></p>
-<br><br><br>
+
+<div class = "leftTab">
+  <div id ="optionsLeft" class = "optionLeft"><button onclick="showTab('draftLeft', this)"
+    class = "tabButtons" id="addLeft" style = "vertical-align:middle"><span>DRAFT FOR BOSSES </span></button></div>
+  <div id = "closeLeft" style = "display:none" class = "tabCloseLeft"><button onclick = "closeTab('draftLeft', this)">CLOSE</button></div>
+  <div id ="draftLeft" style = "display:none"><div id = "tierSelection" class="tierSelectionBar"></div>
+  <div id="tiersBosses" class = "bossSelect"></div></div>
+</div>
+
 <div class = "bottomTab">
   <div id ="optionsTab" class = "optionTab"><button onclick="showTab('editTab', this)"
     class = "tabButtons" id="addButton" style = "vertical-align:middle"><span>EDIT </span></button></div>
