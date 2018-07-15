@@ -17,7 +17,6 @@ function createCell1(cell, row, i, raiders, rown){
   "<button id=('nameText' + RowId) class='RnameText'>"+raiderObjects[rown-1].nameN+"</button>";
   cell.style.width="130px";
 }
-
 function createCell(cell, rown, i) {
   cellid = "r" + [rown] + "c" + [i];
   setdraftid = "setDraftStatus" + cellid;
@@ -26,7 +25,6 @@ function createCell(cell, rown, i) {
   "<button class='sitButton' id=('setStandby' + cellid) onclick='setAsStandby(this,"+i+", "+rown+")'></button>";
   document.getElementById(setdraftid).innerText = "-";
 }
-
 function setAsStandby(button, i, rown) {
   var standbyTicked = button.parentElement.getElementsByClassName("tbutton")[0];
   standbyTicked.style.backgroundColor = "darkslategray";
@@ -72,7 +70,6 @@ function setDec(button){
     button.parentElement.class = "decl";
     setColour(varName, bcCol, textCol, borderCol)
   }}
-
 function createfirstrow(bosses, nofcolumns, row, rown){
   for (i=0; i<nofcolumns; i++) {
     var cell = row.insertCell(i);
@@ -216,6 +213,7 @@ function tableLoad(){
   hideRoleColumn();
   createCountertable();
   createTierList();
+  updateNtoSit();
 }
 function showBossColumn(saveBosses){
   var table = document.getElementById("draftTable");
@@ -233,7 +231,6 @@ function hideColumn(cell){
   for (i=0; i<nofr; i++){
     table.rows[i].cells[cell].style.display = "none";
 }}
-
 function hideDeclined(){
   var table = document.getElementById("draftTable");
   var nofr = table.rows.length;
@@ -245,8 +242,26 @@ function hideDeclined(){
     } else if(cellstatus.class === "acces") {
       numAcce = numAcce + 1;
     }  }
-  document.getElementById("numAcc").innerText = "Total Accepted: " + numAcce;
+  document.getElementById("totacc").innerText = "Accepted: " + numAcce;
+  document.getElementById("totacc").value = numAcce;
+  updateNtoSit();
 }
+function updateNtoSit(){
+  var table = document.getElementById("draftTable");
+  var nofr = table.rows.length;
+  columns = table.rows[0].cells.length;
+  for (i=2; i<columns; i++){
+  cellv = table.rows[nofr-1].cells[i];
+  if (typeof cellv.value !='undefined') {
+  numSby = cellv.value;
+  } else {
+  numSby = 0;
+  } totnum = document.getElementById("totacc").value;
+  if (typeof totnum ==='undefined') {
+  totnum = 0;
+  } cellv.innerHTML = totnum - 20 - numSby;
+  checkifnegative(cellv);}
+  }
 function createCountertable(){
   var table = document.getElementById('draftTable');
   var nofr = table.rows.length;
@@ -256,34 +271,36 @@ function createCountertable(){
       var cell = row.insertCell(i);
       cell.class = "counttable"
     if (i===0) {
-    cell.innerText = "n. to sit:";
+    cell.id="totacc";
   } else if (i===1) {
   cell.style.display = "none"; }
-  else {
-  var clicks = 0;
-  cell.innerHTML = clicks;
-}}}
+}}
 function counterTableShow(cellnu){
   var table = document.getElementById("draftTable");
   var nofr = table.rows.length;
   var numSby = 0;
-  for (i=1; i<nofr; i++){
+  for (i=1; i<nofr-1; i++){
     var cellstatus = table.rows[i].cells[cellnu];
     if (cellstatus.class === "standbyclass") {
       numSby = numSby + 1;
     }}
-  var ctable = document.getElementById("countertable");
-  totnum = document.getElementById("numAcc").innerHTML;
-  ctable.rows[0].cells[cellnu-1].innerHTML = totnum + " - " + numSby;
+  totnum = document.getElementById("totacc").value;
+  if (typeof totnum === 'undefined') {
+    totnum = 0;
+  }
+  var countcell = table.rows[nofr-1].cells[cellnu];
+  countcell.innerHTML = totnum - 20 - numSby;
+  countcell.value = numSby;
+  checkifnegative(countcell);
   }
 function createTierList(){
-  var noftiers = 3;
+  var noftiers = tiersArray.length;
   for (i=0; i<noftiers; i++){
     buttonid = "b" + i;
+    tiername = tiersArray[i];
     document.getElementById("tierSelection").innerHTML +=
-    "<button id="+buttonid+" onclick='showTierBosses(this)'>"+i+"</button>"
-  }
-}
+    "<button id="+buttonid+" onclick='showTierBosses(this)'>"+tiername+"</button>"
+  } }
 function showTierBosses(button){
   i = button.innerHTML;
   tierchosen = tiers[i];
@@ -296,7 +313,7 @@ function showTierBosses(button){
       checkboxname = "boss" +i;
       idname = bossObjectArray[i].Bname;
     tierchoices.innerHTML +=
-    "<input id="+idname+" class='bossCheckBox' type = 'checkbox' name="+checkboxname+">"+idname + " ";
+    "<input id="+idname+" class='bossCheckBox' type = 'checkbox' name="+checkboxname+">"+idname + " " +"<br>";
     }}
   tierchoices.innerHTML += "<br>" + "<br>" + "<button onclick ='selectBosses()'>Select</button>"
 }
@@ -308,6 +325,11 @@ function selectBosses(){
       bossnam = bossesChosen[i].id;
       saveBosses.push(bossnam);
   }
-} if (saveBosses.length > 0) {
+  } if (saveBosses.length > 0) {
   showBossColumn(saveBosses);
 }}
+function checkifnegative(cell){
+  if (cell.innerHTML <0) {
+    cell.innerHTML = "-";
+  }
+}

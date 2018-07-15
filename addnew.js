@@ -2,6 +2,18 @@ function Tier (tiername){
   this.Tiername = tiername;
 }
 
+tiersArray = [];
+tierA = "0";
+tierObject = new Tier(tierA);
+tiersArray.push(tierA);
+tierB = "1";
+tierObject = new Tier(tierB);
+tiersArray.push(tierB);
+tierC = "2";
+tierObject = new Tier(tierC);
+tiersArray.push(tierC);
+
+
 function StoreRaiderInfo(){
   var raidersName, raidersMS, raidersOS, text;
   offspecoptions = ["OS1", "OS2", "OS3", "OS4"];
@@ -31,18 +43,18 @@ function StoreRaiderInfo(){
       document.getElementById("OS4").unchecked=false;
     }
     for (i = 0; i < 4; i++) {
-  if (document.getElementById(offspecoptions[i]).checked) {
-    raidersOS = raidersOS + offspecroles[i];
-    OScode = OScode + "1";
-  } else {
+      if (document.getElementById(offspecoptions[i]).checked) {
+        raidersOS = raidersOS + offspecroles[i];
+        OScode = OScode + "1";
+      } else {
       raidersOS = raidersOS;
       OScode = OScode + "0";
     }
   }
-if (raidersOS.length==0) {
+  if (raidersOS.length==0) {
   raidersOS = "none";
   OScode = OScode + "1";
-} else {
+  } else {
     raidersOS = raidersOS;
     OScode = OScode + "0";
   }
@@ -54,9 +66,8 @@ if (raidersOS.length==0) {
     text = "Name: " + raidersName + "<br>" + "Role: " + raidersMS +
     "<br>" + "Other roles: " + raidersOS + "<br>" + "With OS code of: " + OScode + "<br>" + "JSON string:" + raiderJSON;
     document.getElementById("AddRaiderBox").reset();
+  } document.getElementById("StoredInfoAsText").innerHTML = text;
   }
-document.getElementById("StoredInfoAsText").innerHTML = text;
-}
 function StoreBossInfo(){
   var bossName = document.getElementById("AddedBossName").value;
   tankIDs = ["tanks1", "tanks2", "tanks3", "tanks4"];
@@ -107,13 +118,19 @@ function hide(idText){
   document.getElementById("StoredInfoAsText").style.display="none";
   document.getElementById("BossInfoAsText").style.display="none";
   document.getElementById("tier").style.display="";
+  document.getElementById("formDiv").style.display = "none";
 }
 function toggleBox(idT){
   var aBox = document.getElementById(idT);
   if (aBox.style.display === "none") {
+    document.getElementById("AddRaiderBox").style.display = "none";
+    document.getElementById("AddFightBox").style.display = "none";
+    document.getElementById("tierform").style.display = "none";
     aBox.style.display = "block";
+    document.getElementById("formDiv").style.display = "";
   } else {
     aBox.style.display = "none";
+    document.getElementById("formDiv").style.display = "none";
   }
 }
 function addTier(){
@@ -125,4 +142,29 @@ function storeTierInfo(){
   var tier = new Tier (tiername);
   document.getElementById("tieradd").innerHTML += tier.Tiername;
   hide('tierform');
+}
+function showTab(idT){
+  var aBox = document.getElementById(idT);
+  aBox.style.display = "";
+  if (idT === "editTab"){
+  document.getElementById("closeB").style.display ="";
+  document.getElementById("optionsTab").style.display = "none";
+  document.getElementById("draftLeft").style.display ="none";
+  document.getElementById("closeLeft").style.display ="none";
+  document.getElementById("optionsLeft").style.display = "";
+  } else {
+  document.getElementById("closeLeft").style.display ="";
+  document.getElementById("optionsLeft").style.display = "none";
+  document.getElementById("editTab").style.display ="none";
+  document.getElementById("closeB").style.display ="none";
+  document.getElementById("optionsTab").style.display = "";
+  }}
+function closeTab(idT, button){
+  var aBox = document.getElementById(idT);
+  aBox.style.display = "none";
+  document.getElementById("closeB").style.display = "none";
+  document.getElementById("closeLeft").style.display = "none";
+  document.getElementById("formDiv").style.display = "none";
+  document.getElementById("optionsTab").style.display = "";
+  document.getElementById("optionsLeft").style.display = "";
 }
