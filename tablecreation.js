@@ -299,7 +299,7 @@ function createTierList(){
     buttonid = "b" + i;
     tiername = tiersArray[i];
     document.getElementById("tierSelection").innerHTML +=
-    "<button id="+buttonid+" onclick='showTierBosses(this)'>"+tiername+"</button>"
+    "<button id="+buttonid+" onclick='showTierBosses(this)'>"+tiername+"</button>"+"<br>"
   } }
 function showTierBosses(button){
   i = button.innerHTML;
