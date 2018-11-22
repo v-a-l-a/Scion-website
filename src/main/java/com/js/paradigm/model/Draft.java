@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.js.scion.model;
+package com.js.paradigm.model;
 
 import java.util.List;
 import org.springframework.data.annotation.Id;

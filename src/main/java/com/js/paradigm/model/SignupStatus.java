@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.js.scion.model;
+package com.js.paradigm.model;
 
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
@@ -12,20 +12,18 @@ import org.springframework.data.annotation.Id;
  *
  * @author sjack
  */
-public class Boss implements Serializable{
+public class SignupStatus implements Serializable{
     
     @Id
     private String id;
+    
+    private String status;
 
-    private String name;
-    private Tier tier;
-
-    public Boss(String name, Tier tier) {
-        this.name = name;
-        this.tier = tier;
+    public SignupStatus() {
     }
 
-    public Boss() {
+    public SignupStatus(String status) {
+        this.status = status;
     }
 
     public String getId() {
@@ -36,22 +34,13 @@ public class Boss implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStatus() {
+        return status;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStatus(String status) {
+        this.status = status;
     }
-
-    public Tier getTier() {
-        return tier;
-    }
-
-    public void setTier(Tier tier) {
-        this.tier = tier;
-    }
-    
     
     
 }
