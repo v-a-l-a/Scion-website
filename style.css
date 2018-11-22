@@ -6,60 +6,194 @@ td {
   padding: 1px 1px 2px 0px;
   text-align: center;
 }
-.addnew {
-  border: solid 2px darkslategray;
+button {
+  cursor: pointer;
+}
+button:focus {outline:0;}
+.bossSelect {
+  position: relative;
+  float: left;
+  width: 200px;
+  background-color: Ivory;
+  border-left: 0px;
+  padding-left: 15px;
+  margin-top: 2px;
+}
+.bossSelect button {
+  margin-bottom: 10px;
+  }
+.leftTab {
+  position: fixed;
+  bottom: 0;
+  width: 50%;
+  background-color: #804d4d;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-top: 15px;
+}
+.bottomTab {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  background-color: #804d4d;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-top: 15px;
+}
+.tabClose {
+  position: fixed;
+  bottom: 157px;
+  right: 50px;
+}
+.tabCloseLeft {
+  position: fixed;
+  bottom: 335px;
+  left: 710px;
+}
+.optionTab button, .tabClose button, .tabCloseLeft button {
+  width: 100px;
+}
+.optionLeft button {
+  width: 180px;
+}
+.optionTab button, .tabClose button, .optionLeft button, .tabCloseLeft button {
+  height: 30px;
   display: inline-block;
-  margin-left: 45px;
-  padding: 10px 5px 5px 10px;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+  color: #804d4d;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.optionTab button span, .optionLeft button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.optionTab button span:after, .optionLeft button span:after{
+  content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.optionTab button:hover span, .optionLeft button:hover span {
+  padding-right: 25px;
+}
+.optionTab button:hover span:after, .optionLeft button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.addnew {
+  border: solid 2px #804d4d;
+  width: 120px;
+  text-align: center;
+  padding: 10px 5px 0px 0px;
+  background-color: Ivory;
+  color: #804d4d;
+  float: left;
 }
 .background {
   background-color: white;
 }
-
+.addnew button {
+  background-color: white;
+  color: #804d4d;
+  border: 2px solid #804d4d;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  height: 30px;
+  width: 80px;
+  margin-left: 10px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.addnew button:hover {
+  background-color: #804d4d;
+  color: white;
+}
+.addnew button:first-child{
+  margin-top: 15px;
+}
+form {
+  margin-top: 0px;
+  margin-left: 10px;
+  padding: 8px;
+  line-height: 1.5;
+  color:  #804d4d;
+}
+.newForm {
+  position: relative;
+  float: left;
+  width: 400px;
+  height: 173px;
+  border: 2px solid #804d4d;
+  border-left: 0px;
+  padding: 0px;
+  background-color: Ivory;
+}
+.cancel, .save {
+  position: absolute;
+  bottom: 15px;
+}
+.cancel {
+  right: 20px;
+}
+.save {
+  right: 90px;
+}
 .tableButtons {
   background-color: white;
   border: 2px solid darkslategray;
+  margin-top: 7px;
+}
+.tableButtons {
   margin-left: 50px;
-  margin-top: 5px;
 }
 .subtitle{
-  color: darkslategray;
+  color: white;
   margin: 0px 0px 0px 50px;
 }
-
+.tierSelectionBar {
+  height: 320px;
+  float: left;
+  width: 120px;
+  margin-left: 10px;
+  padding: 10px 5px 5px 15px;
+}
 .tierSelectionBar button {
-  padding: 2px 5px;
   overflow: hidden;
-  background-color: darkslategray;
+  background-color: white;
   width: 100px;
   float:left;
-  color: white;
+  color: #804d4d;
   text-align: center;
-  border: 2px solid darkslategray;
-  margin: 0px 0px 0px 50px;
-}
-.tierSelection button:not(:last-child){
-  border-right: none;
-}
-.tierSelectionBar button:not(:first-child){
-  margin: 0px;
-}
-.tierSelectionBar:after {
-  content: "";
-  clear: both;
-  display: table;
-}
-.tierSelectionBar button:focus {
-  background-color: #ded1d1;
-  color: black;
+  border: 2px solid #804d4d;
+  margin: 0px 0px 15px 0px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
 }
 .tierSelectionBar button:hover{
-  opacity: 0.9;
+  background-color: #804d4d;
+  color: white;
 }
-
+.tierDiv {
+  background-color: Ivory;
+  border: solid 2px #804d4d;
+  width: 150px;
+  background-color: Ivory;
+  color: #804d4d;
+  float: left;
+  text-align: center;
+  padding-top: 10px;
+}
 .tbutton, .sitButton, .accDec, .RnameText, .tierSelectionBar button, .tableButtons {
     height: 25px;
-    cursor: pointer;
     font-size: 12px;
 }
 .tbutton {
@@ -74,7 +208,6 @@ td {
   border-radius: 8px 0 0 8px;
   width: 70px;
 }
-button:focus {outline:0;}
 .tbutton:hover {
   opacity: 0.9;
 }
