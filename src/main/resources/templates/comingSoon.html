@@ -1,19 +1,123 @@
-<!doctype html>
-<title>Paradigm</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="webstyle.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-  body { text-align: center; padding: 150px; }
-  h1 { font-size: 50px; }
-  body { font: 20px Helvetica, sans-serif; color: #333; }
-  article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-  a { color: #dc8100; text-decoration: none; }
-  a:hover { color: #333; text-decoration: none; }
-</style>
+  body {
+      position: relative;
+      background-color: #1a1a1a;
+      text-align: center;
+  }
+  .affix {
+      top:0;
+      width: 70%;
+      z-index: 9999 !important;
+  }
+  .navbar {
+      margin-bottom: 0px;
+  }
+  .affix ~ .container-fluid {
+     position: relative;
+     top: 50px;
+}
+.container-fluid {
+   background-color: #262626;
+   margin-left:15%;
+   margin-right:15%;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color : gold;
+}
+.navbar-inverse  .navbar-brand {
+  color: gold;
+}
+.navbar-inverse {
+  background-color: #262626;
+}
+.navbar-nav {
+    float:none;
+    margin:0 auto;
+    text-align: center;
+}
 
-<article>
-    <h1>&lt;Paradigm&gt;</h1>
-    <h2>    Quel'thalas</h2>
-    <div>
-        <p>     Coming soon!</p>
+.navbar-nav>li {
+    display: inline-block;
+    float:none;
+}
+
+  #section1 {padding-top:50px;height:500px;color: #262626; background-color: #e6e6e6;}
+  #section2 {padding-top:50px;height:500px;color: #262626; background-color: #f2f2f2;}
+  #section3 {padding-top:50px;height:500px;color: #262626; background-color: #e6e6e6;}
+  #section41 {padding-top:50px;height:500px;color: #262626; background-color: #f2f2f2;}
+  #section42 {padding-top:50px;height:500px;color: #262626; background-color: #e6e6e6;}
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<div class="container-fluid" style="background-color:#1a1a1a;color:#ffffe6;height:200px;text-align: center;">
+  <h1>PARADIGM</h1>
+  <h3>Logo to be inserted</h3>
+  <p>Text if needed...</p>
+</div>
+
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197" style="margin-left:15%;margin-right:15%;border-radius: 0px">
+  <a class="navbar-brand d-flex w-50 mr-auto" href="#">Paradigm</a>
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
     </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#section1">About</a></li>
+          <li><a href="#section2">News</a></li>
+          <li><a href="#section3">Streams & logs</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Guild info <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#section41">Guild rules</a></li>
+              <li><a href="#section42">Loot rules</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
 
-</article>
+<div id="section1" class="container-fluid">
+  <h1>Paradigm  - Quel'Thalas</h1>
+  <p>Paradigm of Quel'thalas is a 2 night raiding guild formed by a group of friends with over a decade of Cutting Edge experience on this realm.</p>
+  <p>During progression our raiding environment is focused, calm and cooperative however, we also enjoy having a laugh during less serious content.</p>
+</div>
+<div id="section2" class="container-fluid">
+  <h1>Section 2</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section3" class="container-fluid">
+  <h1>Section 3</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section41" class="container-fluid">
+  <h1>Section 4 Submenu 1</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section42" class="container-fluid">
+  <h1>Section 4 Submenu 2</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+
+</body>
+</html>
