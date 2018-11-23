@@ -12,6 +12,8 @@
       position: relative;
       background-color: #1a1a1a;
       text-align: center;
+      margin-left: 15%;
+      margin-right: 15%;
   }
   .affix {
       top:0;
@@ -27,8 +29,13 @@
 }
 .container-fluid {
    background-color: #262626;
-   margin-left:15%;
-   margin-right:15%;
+
+}
+@media only screen and (max-width: 800px) {
+    body {
+        margin-left: 1%;
+        margin-right: 1%;
+    }
 }
 .navbar-inverse .navbar-nav > li > a {
   color : gold;
@@ -65,7 +72,7 @@
   <p>Text if needed...</p>
 </div>
 
-<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197" style="margin-left:15%;margin-right:15%;border-radius: 0px">
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197" style="border-radius: 0px">
   <a class="navbar-brand d-flex w-50 mr-auto" href="#">Paradigm</a>
   <div class="container-fluid">
     <div class="navbar-header">
