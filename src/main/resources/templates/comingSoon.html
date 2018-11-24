@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a:not(".dropdown-toggle")') ) {
+        $(this).collapse('hide');
+    }
+});
+</script>
 <style>
   body {
       position: relative;
@@ -43,9 +50,9 @@
     .title {
       margin-right: 20% !important;
     }
-    .navbar{
-	    width: 100%;
-	  }
+	.navbar{
+		width: 100%;
+	}
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -61,6 +68,7 @@
     float:none;
     margin:0 auto;
     text-align: center;
+	
 }
 
 .navbar-nav>li {
@@ -98,16 +106,17 @@
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#section1" data-toggle="collapse" data-target=".navbar-collapse">About</a></li>
-          <li><a href="#section3" data-toggle="collapse" data-target=".navbar-collapse">For Raiders</a></li>
-              <li><a href="#section2" data-toggle="collapse" data-target=".navbar-collapse">Kill vids & stream</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Guild info <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#section51" data-toggle="collapse" data-target=".navbar-collapse">Guild rules</a></li>
-              <li><a href="#section52" data-toggle="collapse" data-target=".navbar-collapse">Loot rules</a></li>
+          <li><a href="#section1">About</a></li>
+          <li><a href="#section3">For Raiders</a></li>
+              <li><a href="#section2">Kill vids & stream</a></li>
+          <li>
+		  <a class="dropdown" data-toggle="dropdown" href="#">Guild info <span class="caret"></span></a>
+            <ul class="dropdown-menu" data-target="#nothing">
+              <li><a href="#section51" data-target="myNavbar">Guild rules</a></li>
+              <li><a href="#section52">Loot rules</a></li>
             </ul>
           </li>
-        </ul>
+		  </ul>
       </div>
     </div>
   </div>
