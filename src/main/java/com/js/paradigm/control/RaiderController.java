@@ -1,4 +1,4 @@
-package com.js.paradigm;
+package com.js.paradigm.control;
 
 import com.js.paradigm.model.RaiderList;
 import org.springframework.beans.factory.annotation.Autowired;

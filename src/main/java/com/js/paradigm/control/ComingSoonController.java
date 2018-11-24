@@ -1,4 +1,4 @@
-package com.js.paradigm;
+package com.js.paradigm.control;
 
 
 import org.springframework.stereotype.Controller;
