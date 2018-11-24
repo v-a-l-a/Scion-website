@@ -1,16 +1,15 @@
 package com.js.paradigm.control;
 
+import com.js.paradigm.security.SecurityConfig;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AdminController {
 
-
-    @RequestMapping(path = "/login", produces = "text/html")
-    public String loadLogin(){
-        return "login";
-    }
 
     @RequestMapping(path = "/paradigm/admin", produces = "text/html")
     public String loadAdmin(){

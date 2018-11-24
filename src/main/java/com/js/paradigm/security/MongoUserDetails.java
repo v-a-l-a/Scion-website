@@ -1,6 +1,6 @@
 package com.js.paradigm.security;
 
-import com.js.paradigm.model.User;
+import com.js.paradigm.model.UserRecord;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +15,10 @@ public class MongoUserDetails implements UserDetails {
     private List<GrantedAuthority> auths;
 
 
-    public MongoUserDetails(final User user) {
-        this.username = user.getUsername();
-        this.password = user.getPassword();
-        String[] auths = (String[]) user.getAuths().toArray();
+    public MongoUserDetails(final UserRecord userRecord) {
+        this.username = userRecord.getUsername();
+        this.password = userRecord.getPassword();
+        String[] auths = (String[]) userRecord.getAuths().toArray();
         this.auths = AuthorityUtils.createAuthorityList(auths);
 
     }

@@ -1,15 +1,13 @@
 package com.js.paradigm.data;
 
-import com.js.paradigm.model.User;
-import com.js.paradigm.security.MongoUserDetails;
-import com.mongodb.Mongo;
+import com.js.paradigm.model.UserRecord;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface UserAuthRepository extends MongoRepository<User, String> {
+public interface UserAuthRepository extends MongoRepository<UserRecord, String> {
 
-    Optional<User> findById(final String uname);
-    User save(User user);
+    Optional<UserRecord> findById(final String uname);
+    UserRecord save(UserRecord userRecord);
     boolean existsById(String uname);
 }

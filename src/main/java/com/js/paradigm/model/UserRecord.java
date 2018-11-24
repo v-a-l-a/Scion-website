@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.io.Serializable;
 import java.util.List;
 
-public class User implements Serializable {
+public class UserRecord implements Serializable {
 
     @Id
     private String username;
