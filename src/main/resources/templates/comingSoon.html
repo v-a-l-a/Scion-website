@@ -35,8 +35,19 @@
     body {
         margin-left: 1%;
         margin-right: 1%;
+    }}
+@media only screen and (max-width: 800px) {
+    .wowprog {
+      display:none !important;
     }
+    .title {
+      margin-right: 20% !important;
+    }
+    .navbar{
+	    width: 100%;
+	  }
 }
+
 .navbar-inverse .navbar-nav > li > a {
   color : gold;
 }
@@ -58,25 +69,24 @@
 }
 
   #section1 {padding-top:50px;height:500px;color: #262626; background-color: #e6e6e6;}
-  #section3 {padding-top:50px;height:850px;color: #262626; background-color: #e6e6e6;}
-  #section4 {padding-top:50px;height:850px;color: #262626; background-color: #f2f2f2;}
-  #section5 {padding-top:50px;height:500px;color: #262626; background-color: #e6e6e6;}
-  #section2 {padding-top:50px;height:850px;color: #262626; background-color: #f2f2f2;}
+  #section3 {padding-top:50px;height:900px;color: #262626; background-color: #f2f2f2;}
+  #section2 {padding-top:50px;height:100vh;color: #262626; background-color: #e6e6e6;}
   #section51 {padding-top:50px;height:500px;color: #262626; background-color: #f2f2f2;}
   #section52 {padding-top:50px;height:500px;color: #262626; background-color: #e6e6e6;}
   </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-
-<div class="container-fluid" style="background-color:#222222;color:#ffffe6;height:200px;text-align: center;">
-  <a href="https://wowprogress.com/"><img alt="WoW Guild Rankings" align=right
-      src="https://wowprogress.com/guild_img/1333189/out/type.site" border="0"/></a>
-  <h1 style="margin-left: 130px">PARADIGM</h1>
-  <h3 style="margin-left: 130px">Logo to be inserted</h3>
+  <div class="wowprog" style="float:right; display:inline; width: 20%;">
+  <a target="_blank" rel="noopener noreferrer" href="https://wowprogress.com/"><img alt="WoW Guild Rankings" align=right
+      src="https://wowprogress.com/guild_img/1333189/out/type.site" border="0"/></a></div>
+<div class="container-fluid" style="background-color:#222222;color:#ffffe6;height:200px;">
+<div class="title">
+  <h1 style="margin-left:20%">PARADIGM</h1>
+  <h3 style="margin-left:20%">Logo to be inserted</h3></div>
 </div>
 
 <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197" style="border-radius: 0px">
-  <a class="navbar-brand d-flex w-50 mr-auto" href="#">Paradigm</a>
+  <a class="navbar-brand" href="#">Paradigm</a>
   <div class="container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -88,15 +98,13 @@
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#section1">About</a></li>
-          <li><a href="#section3">Draft</a></li>
-              <li><a href="#section4">Loot sheet</a></li>
-              <li><a href="#section5">Flasks</a></li>
-              <li><a href="#section2">Kill vids & stream</a></li>
+          <li><a href="#section1" data-toggle="collapse" data-target=".navbar-collapse">About</a></li>
+          <li><a href="#section3" data-toggle="collapse" data-target=".navbar-collapse">For Raiders</a></li>
+              <li><a href="#section2" data-toggle="collapse" data-target=".navbar-collapse">Kill vids & stream</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Guild info <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#section51">Guild rules</a></li>
-              <li><a href="#section52">Loot rules</a></li>
+              <li><a href="#section51" data-toggle="collapse" data-target=".navbar-collapse">Guild rules</a></li>
+              <li><a href="#section52" data-toggle="collapse" data-target=".navbar-collapse">Loot rules</a></li>
             </ul>
           </li>
         </ul>
@@ -122,22 +130,16 @@
 <br> Exceptional applicants will always be considered. </p>
 </div>
 <div id="section3" class="container-fluid">
-  <iframe width="95%" height="90%" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0HcG29l4P0QeFozuW_GU3-kT_CzHVmU7JrmNM-cEVx7nu4C8eQuitd00xpHjyVvAlCchQgnRrTnf4/pubhtml?gid=2129628759&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
-</div>
-<div id="section4" class="container-fluid">
-  <h1>Loot Sheet</h1>
-  <iframe width="95%" height="90%" onload="scroll(0,screen.height)"
-  src="https://docs.google.com/spreadsheets/d/1wgRHiVSXdR-O_jWTIWn7BvIzfd4vw0ifxHkPS0NGmsk/edit?usp=sharing&amp;single=true&amp;widget=true&amp;headers=false&rm=minimal"></iframe>
-</div>
-<div id="section5" class="container-fluid">
-  <h1>Flask donations</h1>
+  <h1>Draft, loot sheet and flask donations</h1>
+<p> Edit the loot sheet <a target="_blank" rel="noopener noreferrer"
+  href="https://docs.google.com/spreadsheets/d/1wgRHiVSXdR-O_jWTIWn7BvIzfd4vw0ifxHkPS0NGmsk/edit#gid=1581757468">here</a></p>
   <iframe width="95%" height="90%"
-  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT7ft0j_z8oCjvZ0BPZGNMhIPCnHRWW5PlbpL4Ucf9u4RsyW_e0sEHKBOe_eV9TJycExCIm7_yJ4MjY/pubhtml?gid=1709581284&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0HcG29l4P0QeFozuW_GU3-kT_CzHVmU7JrmNM-cEVx7nu4C8eQuitd00xpHjyVvAlCchQgnRrTnf4/pubhtml"></iframe>
 </div>
 <div id="section2" class="container-fluid">
   <h1>Videos and stream</h1>
-  <br>  <p>Streams by Corkadoc: <a href="https://www.twitch.tv/corkadoc">TWITCH</a></p>
-  Kill videos: <a href="https://www.youtube.com/embed/UZYr-LIVGSQ">YOUTUBE</a></p><br>
+  <br>  <p>Streams by Corkadoc: <a target="_blank" rel="noopener noreferrer" href="https://www.twitch.tv/corkadoc">TWITCH</a></p>
+  Kill videos: <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/embed/UZYr-LIVGSQ">YOUTUBE</a></p><br>
   <div class="embed-responsive embed-responsive-16by9">
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/UZYr-LIVGSQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div></div>
