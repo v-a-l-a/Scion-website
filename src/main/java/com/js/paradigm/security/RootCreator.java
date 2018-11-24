@@ -17,16 +17,6 @@ public class RootCreator {
 
 
     public void createRootInDB(){
-        if (!uar.existsById("root")){
-            UserRecord admin = new UserRecord();
-            String encoded = new BCryptPasswordEncoder().encode("pass");
-            admin.setUsername("root");
-            admin.setPassword(encoded);
-            List<String> auths = new ArrayList<>();
-            auths.add("admin");
-            admin.setAuths(auths);
-            uar.save(admin);
-        }
 
     }
 
