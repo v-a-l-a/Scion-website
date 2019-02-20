@@ -15,6 +15,10 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 });
 </script>
 <style>
+img {
+  max-width: 100%;
+  height: auto;
+}
   body {
       position: relative;
       background-color: #222222;
@@ -32,7 +36,6 @@ $(document).on('click','.navbar-collapse.in',function(e) {
   }
   .affix ~ .container-fluid {
      position: relative;
-     top: 50px;
 }
 .container-fluid {
    background-color: #1a1a1a;
@@ -56,10 +59,12 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color : gold;
+  font-family: "Helvetica";
+  color : #E5CB93;
 }
 .navbar-inverse  .navbar-brand {
-  color: gold;
+  color: #E5CB93;
+  font-family: "Helvetica";
 }
 .navbar-inverse {
   background-color: #222222;
@@ -76,11 +81,13 @@ $(document).on('click','.navbar-collapse.in',function(e) {
     float:none;
 }
 
-  #section1 {padding-top:50px;height:500px;color: #262626; background-color: #e6e6e6;}
-  #section3 {padding-top:50px;height:900px;color: #262626; background-color: #f2f2f2;}
-  #section2 {padding-top:50px;height:100vh;color: #262626; background-color: #e6e6e6;}
-  #section51 {padding-top:50px;height:500px;color: #262626; background-color: #f2f2f2;}
-  #section52 {padding-top:50px;height:500px;color: #262626; background-color: #e6e6e6;}
+
+
+  #section1 {padding-top:54px;padding-bottom:54px;height:auto; color:  #000000; background-color: #e6e6e6;}
+  #section3 {padding-top:54px;padding-bottom:54px;height:1000px;color:  #000000; background-color: #f2f2f2;}
+  #section2 {padding-top:54px;padding-bottom:54px;height:auto;color:  #000000; background-color: #e6e6e6;}
+  #section51 {padding-top:54px;padding-bottom:54px;height:auto;color: #000000; background-color: #f2f2f2; }
+  #section52 {padding-top:54px;padding-bottom:54px;height:auto;color: #000000; background-color: #e6e6e6;}
   </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -89,12 +96,11 @@ $(document).on('click','.navbar-collapse.in',function(e) {
       src="https://wowprogress.com/guild_img/1333189/out/type.site" border="0"/></a></div>
 <div class="container-fluid" style="background-color:#222222;color:#ffffe6;height:200px;">
 <div class="title">
-  <h1 style="margin-left:20%">PARADIGM</h1>
-  <h3 style="margin-left:20%">Logo to be inserted</h3></div>
+  <h1 style="margin-left:20%"><img src="../images/mainlogo.png" width="253" height="253"</h1>
 </div>
 
 <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197" style="border-radius: 0px">
-  <a class="navbar-brand" href="#">Paradigm</a>
+  <a class="navbar-brand" href="#"><b>Paradigm</b></a>
   <div class="container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -106,14 +112,14 @@ $(document).on('click','.navbar-collapse.in',function(e) {
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#section1">About</a></li>
-          <li><a href="#section3">For Raiders</a></li>
-              <li><a href="#section2">Kill vids & stream</a></li>
+          <li><a href="#section1"><b>About</b></a></li>
+          <li><a href="#section3"><b>For Raiders</b></a></li>
+              <li><a href="#section2"><b>Kill vids & stream</b></a></li>
           <li>
-		  <a class="dropdown" data-toggle="dropdown" href="#">Guild info <span class="caret"></span></a>
-            <ul class="dropdown-menu" data-target="#nothing">
-              <li><a href="#section51" data-target="myNavbar">Guild rules</a></li>
-              <li><a href="#section52">Loot rules</a></li>
+		  <a class="dropdown" data-toggle="dropdown" href="#"><b>Guild info </b><span class="caret"></span></a>
+            <ul class="dropdown-menu" data-target="#nothing" >
+              <li><a href="#section51" data-target="myNavbar" ><b>Guild rules</b> </a></li>
+              <li><a href="#section52"><b>Loot rules</b></a></li>
             </ul>
           </li>
 		  </ul>
@@ -123,7 +129,6 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 </nav>
 
 <div id="section1" class="container-fluid">
-  <h1>Paradigm  - Quel'Thalas</h1>
     <br>
   <p>Paradigm of Quel'thalas is a 2 night raiding guild formed by a group of friends with over a decade of Cutting Edge experience on this realm.
   <br>During progression our raiding environment is focused, calm and cooperative however, we also enjoy having a laugh during less serious content.</p>
@@ -132,9 +137,9 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 <br>Wednesday 19:45-23:00 ST (CET)
 <br>Sunday 19:15-22:30 ST (CET)
 </p>
-<br> <p>We are currently looking for 1 or 2 experienced, skilled and likeminded individuals to complete our raid team:
-<br><b>Holy Paladin -  Warlock</b>
-<br> Whilst our preference is as listed above,
+<br> <p>We're always on the lookout for exceptional raiders who share our core values
+<br><b><ul sidelist><li>Teamwork</li> <li> Respect</li> <li> Commitment</li></b></ul>
+<br> <font size="2">Whilst our preference is as listed above,
 <br>do not be put off if you feel Paradigm is the guild for you!
 <br> Exceptional applicants will always be considered. </p>
 </div>
